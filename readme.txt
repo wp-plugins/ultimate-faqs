@@ -58,6 +58,9 @@ The shortcode accepts two attributes, "include_category" and "exclude_category",
 2. Sample FAQ page
 
 == Changelog ==
+= 0.2 =
+- Added a number of grouping and ordering options to the "Options" page
+
 = 0.1 =
 - Initial beta version. Please make comments/suggestions in the "Support" forum.
 

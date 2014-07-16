@@ -9,15 +9,33 @@ function Display_FAQs($atts) {
 		$FAQ_Accordion = get_option("EWD_UFAQ_FAQ_Accordion");
 		$Reveal_Effect = get_option("EWD_UFAQ_Reveal_Effect");
 		
+		$Group_By_Category = get_option("EWD_UFAQ_Group_By_Category");
+		$Group_By_Order_By = get_option("EWD_UFAQ_Group_By_Order_By");
+		$Group_By_Order = get_option("EWD_UFAQ_Group_By_Order");
+		$Order_By_Setting = get_option("EWD_UFAQ_Order_By");
+		$Order_Setting = get_option("EWD_UFAQ_Order");
+		
 		$ReturnString = "";
 		
 		// Get the attributes passed by the shortcode, and store them in new variables for processing
 		extract( shortcode_atts( array(
 						 								 		'include_category' => "",
-																'exclude_category' => ""),
+																'exclude_category' => "",
+																'orderby' => "",
+																'order' => ""),
 																$atts
 														)
 												);
+		
+		if ($orderby == "") {$orderby = $Order_By_Setting;}
+		if ($order == "") {$order = $Order_Setting;}
+		
+		if ($Group_By_Category == "Yes") {
+			  $Category_Array = get_terms('ufaq-category', array('orderby' => $Group_By_Order_By, 'order' => $Group_By_Order));
+		}
+		else {
+				$Category_Array = array("EWD_UFAQ_ALL_CATEGORIES");
+		}
 		
 		if (isset($_GET['include_category'])) {$include_category = $_GET['include_category'];}
 		if ($include_category != "" ) {$include_category_array = explode(",", $include_category);}
@@ -39,50 +57,73 @@ function Display_FAQs($atts) {
 												 );
 		}
 		
+		$ReturnString .= "<div class='ufaq-faq-list' id='ufaq-faq-list'>";
 		
-		$params = array(
+		foreach ($Category_Array as $Category) {
+				
+				if ($Category != "EWD_UFAQ_ALL_CATEGORIES") {$category_array = array( 'taxonomy' => 'ufaq-category',
+					 							 																			 	 				'field' => 'slug',
+																																				'terms' => $Category->slug
+																																 );
+				
+				}
+				
+				$params = array(
 										'posts_per_page' => -1, 
 										'post_type' => 'ufaq',
-										//'ufaq-category' => 'test-category'
+										'orderby' => $orderby,
+										'order' => $order,
 										'tax_query' => array(
 																				 'relation' => 'AND',
 																				 $include_array,
-																				 $exclude_array
+																				 $exclude_array,
+																				 $category_array
 																	 )
 							);
-		$faqs = get_posts($params);
+				$faqs = get_posts($params);
 		
-		if ($Custom_CSS != "") {$ReturnString .= "<style>" . $Custom_CSS . "</style>";}
+				if ($Custom_CSS != "") {$ReturnString .= "<style>" . $Custom_CSS . "</style>";}
 		
-		$ReturnString .= "<script language='JavaScript' type='text/javascript'>";
-		if ($FAQ_Accordion == "Yes") {$ReturnString .= "var faq_accordion = true;";}
-		else {$ReturnString .= "var faq_accordion = false;";}
-		$ReturnString .= "var reveal_effect = '" . $Reveal_Effect . "';";
-		$ReturnString .= "</script>";
-		
-		$ReturnString .= "<div class='ufaq-faq-list' id='ufaq-faq-list'>";
-		foreach ($faqs as $faq) {
-				$Terms = wp_get_post_terms($faq->ID, 'ufaq-category');
+				$ReturnString .= "<script language='JavaScript' type='text/javascript'>";
+				if ($FAQ_Accordion == "Yes") {$ReturnString .= "var faq_accordion = true;";}
+				else {$ReturnString .= "var faq_accordion = false;";}
+				$ReturnString .= "var reveal_effect = '" . $Reveal_Effect . "';";
+				$ReturnString .= "</script>";
 				
-				$ReturnString .= "<div class='ufaq-faq-div'>";
+				if ($Category != "EWD_UFAQ_ALL_CATEGORIES" and sizeOf($faqs) > 0) {
+					  $ReturnString .= "<div class='ufaq-faq-category'>";
+						$ReturnString .= "<div class='ufaq-faq-category-title'>";
+						$ReturnString .= "<h4>" . $Category->name . "</h4>";
+						$ReturnString .= "</div>";
+				}
 				
-				$ReturnString .= "<div class='ufaq-faq-title' id='ufaq-title-" . $faq->ID . "' data-postid='" . $faq->ID . "'>";
-				$ReturnString .= "<h3><a href='" . get_permalink($faq->ID) . "'>" . $faq->post_title . "</a></h3>";
-				$ReturnString .= "</div>";
+				foreach ($faqs as $faq) {
+						$Terms = wp_get_post_terms($faq->ID, 'ufaq-category');
 				
-				if (strlen($faq->post_excerpt) > 0) {$ReturnString .= "<div class='ufaq-faq-excerpt' id='ufaq-excerpt-" . $faq->ID . "'>" . $faq->post_excerpt . "</div>";}
-				$ReturnString .= "<div class='ufaq-faq-body ewd-ufaq-hidden' id='ufaq-body-" . $faq->ID . "'>";
-				$ReturnString .= "<div class='ufaq-faq-post' id='ufaq-post-" . $faq->ID . "'>" . $faq->post_content . "</div>";
+						$ReturnString .= "<div class='ufaq-faq-div'>";
+				
+						$ReturnString .= "<div class='ufaq-faq-title' id='ufaq-title-" . $faq->ID . "' data-postid='" . $faq->ID . "'>";
+						$ReturnString .= "<h4><a href='" . get_permalink($faq->ID) . "'>" . $faq->post_title . "</a></h4>";
+						$ReturnString .= "</div>";
+				
+						if (strlen($faq->post_excerpt) > 0) {$ReturnString .= "<div class='ufaq-faq-excerpt' id='ufaq-excerpt-" . $faq->ID . "'>" . apply_filters('the_content', html_entity_decode($faq->post_excerpt)) . "</div>";}
+						$ReturnString .= "<div class='ufaq-faq-body ewd-ufaq-hidden' id='ufaq-body-" . $faq->ID . "'>";
+						$ReturnString .= "<div class='ufaq-faq-post' id='ufaq-post-" . $faq->ID . "'>" . apply_filters('the_content', html_entity_decode($faq->post_content)) . "</div>";
 
-				$ReturnString .= "<div class='ufaq-faq-categories' id='ufaq-categories-" . $faq->ID . "'>";
-				if (sizeOf($Terms) > 1) {$ReturnString .= "Categories: ";}
-				else {$ReturnString .= "Category: ";}
-				foreach ($Terms as $Term) {$ReturnString .= "<a href='" . $current_url . "?include_category=" . $Term->slug . "'>" .$Term->name . "</a>, ";}
-				if (sizeOf($Terms) > 0) {$ReturnString = substr($ReturnString, 0, strlen($ReturnString)-2);}
-				$ReturnString .= "</div>";
+						$ReturnString .= "<div class='ufaq-faq-categories' id='ufaq-categories-" . $faq->ID . "'>";
+						if (sizeOf($Terms) > 1) {$ReturnString .= "Categories: ";}
+						else {$ReturnString .= "Category: ";}
+						foreach ($Terms as $Term) {$ReturnString .= "<a href='" . $current_url . "?include_category=" . $Term->slug . "'>" .$Term->name . "</a>, ";}
+						if (sizeOf($Terms) > 0) {$ReturnString = substr($ReturnString, 0, strlen($ReturnString)-2);}
+						$ReturnString .= "</div>";
 				
-				$ReturnString .= "</div>";
-				$ReturnString .= "</div>";
+						$ReturnString .= "</div>";
+						$ReturnString .= "</div>";
+				}
+				
+				if ($Category != "EWD_UFAQ_ALL_CATEGORIES") {
+					  $ReturnString .= "</div>";
+				}
 		}
 		$ReturnString .= "</div>";
 		

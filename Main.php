@@ -7,7 +7,7 @@ Author: Tim Ruse
 Author URI: http://www.EtoileWebDesign.com/wordpress-plugins/
 Terms and Conditions: http://www.etoilewebdesign.com/plugin-terms-and-conditions/
 Text Domain: EWD_UFAQ
-Version: 0.1
+Version: 0.2
 */
 
 global $ewd_ufaq_message;
@@ -19,6 +19,7 @@ define( 'EWD_UFAQ_CD_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 //define('WP_DEBUG', true);
 
 register_activation_hook(__FILE__,'Set_EWD_UFAQ_Options');
+add_filter('upgrader_post_install', 'Set_EWD_UFAQ_Options', 10, 2);
 
 /* Hooks neccessary admin tasks */
 if ( is_admin() ){
@@ -97,7 +98,13 @@ function save_ufaq_error(){
 function Set_EWD_UFAQ_Options() {
 		if (get_option("EWD_UFAQ_FAQ_Accordion") == "") {update_option("EWD_UFAQ_FAQ_Accordion", "No");}
 		if (get_option("EWD_UFAQ_Reveal_Effect") == "") {update_option("EWD_UFAQ_Reveal_Effect", "none");}
-		update_option("EWD_UFAQ_Full_Version", "Yes");
+		if (get_option("EWD_UFAQ_Full_Version") == "") {update_option("EWD_UFAQ_Full_Version", "Yes");}
+		
+		if (get_option("EWD_UFAQ_Group_By_Category") == "") {update_option("EWD_UFAQ_Group_By_Category", "No");}
+		if (get_option("EWD_UFAQ_Group_By_Order_By") == "") {update_option("EWD_UFAQ_Group_By_Order_By", "name");}
+		if (get_option("EWD_UFAQ_Group_By_Order") == "") {update_option("EWD_UFAQ_Group_By_Order", "ASC");}
+		if (get_option("EWD_UFAQ_Order_By") == "") {update_option("EWD_UFAQ_Order_By", "date");}
+		if (get_option("EWD_UFAQ_Order") == "") {update_option("EWD_UFAQ_Order", "DESC");}
 }
 
 $UFAQ_Full_Version = get_option("EWD_UFAQ_Full_Version");

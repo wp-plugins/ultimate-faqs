@@ -2,6 +2,12 @@
 		$Custom_CSS = get_option("EWD_UFAQ_Custom_CSS");
 		$FAQ_Accordion = get_option("EWD_UFAQ_FAQ_Accordion");
 		$Reveal_Effect = get_option("EWD_UFAQ_Reveal_Effect");
+		
+		$Group_By_Category = get_option("EWD_UFAQ_Group_By_Category");
+		$Group_By_Order_By = get_option("EWD_UFAQ_Group_By_Order_By");
+		$Group_By_Order = get_option("EWD_UFAQ_Group_By_Order");
+		$Order_By_Setting = get_option("EWD_UFAQ_Order_By");
+		$Order_Setting = get_option("EWD_UFAQ_Order");
 ?>
 <div class="wrap">
 <div id="icon-options-general" class="icon32"><br /></div><h2>Settings</h2>
@@ -53,6 +59,73 @@
 	</select>
 	
 	<p>How should FAQ's be displayed when their titles are clicked?</p>
+	</fieldset>
+</td>
+</tr>
+
+<tr>
+<th scope="row">Group FAQs by Category</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>Group FAQs by Category</span></legend>
+	<label title='Yes'><input type='radio' name='group_by_category' value='Yes' <?php if($Group_By_Category == "Yes") {echo "checked='checked'";} ?> /> <span>Yes</span></label><br />
+	<label title='No'><input type='radio' name='group_by_category' value='No' <?php if($Group_By_Category == "No") {echo "checked='checked'";} ?> /> <span>No</span></label><br />
+	<p>Should FAQs be grouped by category, or should all categories be mixed together?</p>
+	</fieldset>
+</td>
+</tr>
+
+<tr>
+<th scope="row">Sort Categories</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>Sort Categories</span></legend>
+	<label title='Group By Order By'></label> 
+
+	<select name="group_by_order_by">
+  		<option value="name" <?php if($Group_By_Order_By == "name") {echo "selected=selected";} ?> >Name</option>
+			<option value="count" <?php if($Group_By_Order_By == "count") {echo "selected=selected";} ?> >FAQ Count</option>
+  		<option value="slug" <?php if($Group_By_Order_By == "slug") {echo "selected=selected";} ?> >Slug</option>
+	</select>
+	
+	<p>How should FAQ categories be ordered? (Only used if "Group FAQs by Category" above is set to "Yes")</p>
+	</fieldset>
+</td>
+</tr>
+
+<tr>
+<th scope="row">Sort Categories Ordering</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>Sort Categories Ordering</span></legend>
+	<label title='Ascending'><input type='radio' name='group_by_order' value='ASC' <?php if($Group_By_Order == "ASC") {echo "checked='checked'";} ?> /> <span>Ascending</span></label><br />
+	<label title='Descending'><input type='radio' name='group_by_order' value='DESC' <?php if($Group_By_Category == "DESC") {echo "checked='checked'";} ?> /> <span>Descending</span></label><br />	
+	<p>How should FAQ categories be ordered? (Only used if "Group FAQs by Category" above is set to "Yes")</p>
+	</fieldset>
+</td>
+</tr>
+
+<tr>
+<th scope="row">FAQ Ordering</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>FAQ Ordering</span></legend>
+	<label title='FAQ Ordering'></label> 
+
+	<select name="order_by_setting">
+  		<option value="date" <?php if($Order_By_Setting == "date") {echo "selected=selected";} ?> >Created Date</option>
+			<option value="title" <?php if($Order_By_Setting == "title") {echo "selected=selected";} ?> >Title</option>
+  		<option value="modified" <?php if($Order_By_Setting == "modified") {echo "selected=selected";} ?> >Modified Date</option>
+	</select>
+	
+	<p>How should individual FAQs be ordered?</p>
+	</fieldset>
+</td>
+</tr>
+
+<tr>
+<th scope="row">FAQ Order Setting</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>Sort Categories Ordering</span></legend>
+	<label title='Yes'><input type='radio' name='order_setting' value='ASC' <?php if($Order_Setting == "ASC") {echo "checked='checked'";} ?> /> <span>Ascending</span></label><br />
+	<label title='No'><input type='radio' name='order_setting' value='DESC' <?php if($Order_Setting == "DESC") {echo "checked='checked'";} ?> /> <span>Descending</span></label><br />	
+	<p>Should FAQ be ascending or descending order, based on the ordering criteria above?</p>
 	</fieldset>
 </td>
 </tr>
