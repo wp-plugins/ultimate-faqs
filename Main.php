@@ -7,7 +7,7 @@ Author: Tim Ruse
 Author URI: http://www.EtoileWebDesign.com/wordpress-plugins/
 Terms and Conditions: http://www.etoilewebdesign.com/plugin-terms-and-conditions/
 Text Domain: EWD_UFAQ
-Version: 0.2
+Version: 0.3
 */
 
 global $ewd_ufaq_message;
@@ -30,6 +30,7 @@ if ( is_admin() ){
 function EWD_UFAQ_Enable_Sub_Menu() {
 		//add_submenu_page('edit.php?post_type=ufaq', 'FAQ Order', 'FAQ Order', 'edit_posts', basename(__FILE__), 'custom_function');
 		add_submenu_page('edit.php?post_type=ufaq', 'FAQ Options', 'FAQ Settings', 'edit_posts', 'options', 'EWD_UFAQ_Output_Options_Page');
+		add_submenu_page('edit.php?post_type=ufaq', 'FAQ PDF Download', 'FAQ Generate PDF', 'edit_posts', 'export', 'EWD_UFAQ_Output_Export_Page');
 		//add_submenu_page('edit.php?post_type=ufaq', 'FAQ Statistics', 'FAQ Statistics', 'edit_posts', basename(__FILE__), 'EWD_UFAQ_Output_Statistics_Page');
 }
 add_action('admin_menu' , 'EWD_UFAQ_Enable_Sub_Menu');
@@ -114,7 +115,9 @@ $UFAQ_Full_Version = get_option("EWD_UFAQ_Full_Version");
 }*/
 
 include "Functions/Error_Notices.php";
+include "Functions/EWD_UFAQ_Export_To_PDF.php";
 include "Functions/EWD_UFAQ_Output_Options_Page.php";
+include "Functions/EWD_UFAQ_Output_Export_Page.php";
 include "Functions/Register_EWD_UFAQ_Posts_Taxonomies.php";
 include "Functions/Update_Admin_Databases.php";
 include "Functions/Update_EWD_UFAQ_Content.php";
