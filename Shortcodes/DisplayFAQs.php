@@ -7,6 +7,7 @@ function Display_FAQs($atts) {
 		
 		$Custom_CSS = get_option("EWD_UFAQ_Custom_CSS");
 		$FAQ_Accordion = get_option("EWD_UFAQ_FAQ_Accordion");
+		$Hide_Categories = get_option("EWD_UFAQ_Hide_Categories");
 		$Reveal_Effect = get_option("EWD_UFAQ_Reveal_Effect");
 		
 		$Group_By_Category = get_option("EWD_UFAQ_Group_By_Category");
@@ -110,12 +111,14 @@ function Display_FAQs($atts) {
 						$ReturnString .= "<div class='ufaq-faq-body ewd-ufaq-hidden' id='ufaq-body-" . $faq->ID . "'>";
 						$ReturnString .= "<div class='ufaq-faq-post' id='ufaq-post-" . $faq->ID . "'>" . apply_filters('the_content', html_entity_decode($faq->post_content)) . "</div>";
 
-						$ReturnString .= "<div class='ufaq-faq-categories' id='ufaq-categories-" . $faq->ID . "'>";
-						if (sizeOf($Terms) > 1) {$ReturnString .= "Categories: ";}
-						else {$ReturnString .= "Category: ";}
-						foreach ($Terms as $Term) {$ReturnString .= "<a href='" . $current_url . "?include_category=" . $Term->slug . "'>" .$Term->name . "</a>, ";}
-						if (sizeOf($Terms) > 0) {$ReturnString = substr($ReturnString, 0, strlen($ReturnString)-2);}
-						$ReturnString .= "</div>";
+						if ($Hide_Categories == "No") {
+							  $ReturnString .= "<div class='ufaq-faq-categories' id='ufaq-categories-" . $faq->ID . "'>";
+								if (sizeOf($Terms) > 1) {$ReturnString .= "Categories: ";}
+								else {$ReturnString .= "Category: ";}
+								foreach ($Terms as $Term) {$ReturnString .= "<a href='" . $current_url . "?include_category=" . $Term->slug . "'>" .$Term->name . "</a>, ";}
+								if (sizeOf($Terms) > 0) {$ReturnString = substr($ReturnString, 0, strlen($ReturnString)-2);}
+								$ReturnString .= "</div>";
+						}
 				
 						$ReturnString .= "</div>";
 						$ReturnString .= "</div>";
