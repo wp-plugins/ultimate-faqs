@@ -1,5 +1,6 @@
 === Plugin Name ===
-Contributors: Rustaurius 
+Contributors: Rustaurius, EtoileWebDesign
+Dontate Link: http://www.etoilewebdesign.com/plugin-donations/
 Tags: frequently asked questions, FAQ, easy FAQ, knowledge base, simple FAQ, FAQ categories
 Requires at least: 3.5.0
 Tested up to: 3.9.1
