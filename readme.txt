@@ -1,6 +1,5 @@
 === Plugin Name ===
-Contributors: Rustaurius, EtoileWebDesign
-Donate Link: http://www.etoilewebdesign.com/plugin-donations/
+Contributors: Rustaurius 
 Tags: frequently asked questions, FAQ, easy FAQ, knowledge base, simple FAQ, FAQ categories
 Requires at least: 3.5.0
 Tested up to: 3.9.1
@@ -32,6 +31,7 @@ A plugin that lets you create FAQs (frequently asked questions), organize them, 
 **Current Shortcodes:**
 * [ultimate-faqs]: display all FAQs, or only specific categories using "include_category" and "exclude_category" attributes (both take a comma-separated list of category slugs)
 * [select-faq]: display specific FAQ posts, using the attributes "faq_name", "faq_slug" and "faq_id" which take comma-separated lists of post names, slugs and ids respectively
+* [ultimate-faq-search]: display a search form that allows users to find FAQs with a specific string in the title or body of the post
 
 Please head to the "Support" tab to report errors or make suggestions.
 Demo videos will be posted as soon as they are available.
@@ -59,6 +59,10 @@ The shortcode accepts two attributes, "include_category" and "exclude_category",
 2. Sample FAQ page
 
 == Changelog ==
+= 0.5 =
+- Added a whole bunch of new features
+- Most important new feature is a shortcode, ultimate-faq-search, that displays an AJAX search form
+
 = 0.4 =
 - Added the option to "Hide Categories" from FAQ posts
 

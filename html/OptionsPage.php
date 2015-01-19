@@ -9,6 +9,8 @@
 		$Group_By_Order = get_option("EWD_UFAQ_Group_By_Order");
 		$Order_By_Setting = get_option("EWD_UFAQ_Order_By");
 		$Order_Setting = get_option("EWD_UFAQ_Order");
+        $Socialmedia_String = get_option("EWD_UFAQ_Social_Media");
+        $Socialmedia = explode(",", $Socialmedia_String);
 ?>
 <div class="wrap">
 <div id="icon-options-general" class="icon32"><br /></div><h2>Settings</h2>
@@ -141,9 +143,24 @@
 	</fieldset>
 </td>
 </tr>
+<tr>
+<th scope="row">Social Media Option</th>
+<td>
+    <fieldset><legend class="screen-reader-text"><span>Social Media Option</span></legend>
+        <label title='Facebook'><input type='checkbox' name='Socialmedia[]' value='Facebook' <?php if(in_array("Facebook", $Socialmedia)) {echo "checked='checked'";} ?> /> <span>Facebook</span></label><br />
+        <label title='Name'><input type='checkbox' name='Socialmedia[]' value='Google'  <?php if(in_array("Google", $Socialmedia)) {echo "checked='checked'";} ?>  /> <span>Google</span></label><br />
+        <label title='Twitter'><input type='checkbox' name='Socialmedia[]' value='Twitter' <?php if(in_array("Twitter", $Socialmedia)) {echo "checked='checked'";} ?> /> <span>Twitter</span></label><br />
+        <label title='Linkedin'><input type='checkbox' name='Socialmedia[]' value='Linkedin' <?php if(in_array("Linkedin", $Socialmedia)) {echo "checked='checked'";} ?> /> <span>Linkedin</span></label><br />
+        <label title='Pinterest'><input type='checkbox' name='Socialmedia[]' value='Pinterest' <?php if(in_array("Pinterest", $Socialmedia)) {echo "checked='checked'";} ?> /> <span>Pinterest</span></label><br />
+        <label title='Email'><input type='checkbox' name='Socialmedia[]' value='Email' <?php if(in_array("Email", $Socialmedia)) {echo "checked='checked'";} ?> /> <span>Email</span></label><br />
+    </fieldset>
+</td>
+</tr>
+
 </table>
 
 
 <p class="submit"><input type="submit" name="Options_Submit" id="submit" class="button button-primary" value="Save Changes"  /></p></form>
 
 </div>
+
