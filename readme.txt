@@ -2,7 +2,7 @@
 Contributors: Rustaurius 
 Tags: frequently asked questions, FAQ, easy FAQ, knowledge base, simple FAQ, FAQ categories
 Requires at least: 3.5.0
-Tested up to: 3.9.1
+Tested up to: 4.1
 License: GPLv3
 License URI:http://www.gnu.org/licenses/gpl-3.0.html
 
