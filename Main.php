@@ -7,7 +7,7 @@ Author: Tim Ruse
 Author URI: http://www.EtoileWebDesign.com/wordpress-plugins/
 Terms and Conditions: http://www.etoilewebdesign.com/plugin-terms-and-conditions/
 Text Domain: EWD_UFAQ
-Version: 0.5
+Version: 0.6
 */
 
 global $ewd_ufaq_message;
@@ -119,6 +119,7 @@ include "Functions/EWD_UFAQ_Import.php";
 include "Functions/EWD_UFAQ_Output_Options_Page.php";
 include "Functions/EWD_UFAQ_Output_Export_Page.php";
 include "Functions/EWD_UFAQ_Output_Import_Page.php";
+include "Functions/FrontEndAjaxUrl.php";
 include "Functions/Process_Ajax.php";
 include "Functions/Register_EWD_UFAQ_Posts_Taxonomies.php";
 include "Functions/Update_Admin_Databases.php";

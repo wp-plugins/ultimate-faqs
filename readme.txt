@@ -59,6 +59,9 @@ The shortcode accepts two attributes, "include_category" and "exclude_category",
 2. Sample FAQ page
 
 == Changelog ==
+= 0.6 =
+- Fixed a bug with the AJAX search feature
+
 = 0.5 =
 - Added a whole bunch of new features
 - Most important new feature is a shortcode, ultimate-faq-search, that displays an AJAX search form
