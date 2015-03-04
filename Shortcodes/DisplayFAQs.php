@@ -109,7 +109,7 @@ function Display_FAQs($atts) {
 		
 				if (strlen($faq->post_excerpt) > 0) {$ReturnString .= "<div class='ufaq-faq-excerpt' id='ufaq-excerpt-" . $faq->ID . "'>" . apply_filters('the_content', html_entity_decode($faq->post_excerpt)) . "</div>";}
 				$ReturnString .= "<div class='ufaq-faq-body ewd-ufaq-hidden' id='ufaq-body-" . $faq->ID . "'>";
-				$ReturnString .= "<div class='ewd-ufaq-post-margin' class='ufaq-faq-post' id='ufaq-post-" . $faq->ID . "'>" . apply_filters('the_content', html_entity_decode($faq->post_content)) . "</div>";
+				$ReturnString .= "<div class='ewd-ufaq-post-margin ufaq-faq-post' id='ufaq-post-" . $faq->ID . "'>" . apply_filters('the_content', html_entity_decode($faq->post_content)) . "</div>";
 		
 				if ($Hide_Categories == "No") {
 					$ReturnString .= "<div class='ufaq-faq-categories' id='ufaq-categories-" . $faq->ID . "'>";
@@ -120,15 +120,16 @@ function Display_FAQs($atts) {
 					$ReturnString .= "</div>";
 				}
 		
-				if (sizeOf($Socialmedia) > 0) {$ReturnString .= "<div class='ufaq-social-links'>Share: ";}
-			    if(in_array("Facebook", $Socialmedia)) {$ReturnString .= "<span class='st_facebook' displayText='Facebook'></span> ";}
-			    if(in_array("Google", $Socialmedia)) {$ReturnString .= "<span class='st_googleplus' displayText='Google +'></span> ";}
-			    if(in_array("Twitter", $Socialmedia)) {$ReturnString .= "<span class='st_twitter' displayText='Tweet'></span> ";}
-			    if(in_array("Linkedin", $Socialmedia)) {$ReturnString .= "<span class='st_linkedin' displayText='LinkedIn'></span> ";}
-			    if(in_array("Pinterest", $Socialmedia)) {$ReturnString .= "<span class='st_pinterest' displayText='Pinterest'></span> ";}
-			    if(in_array("Email", $Socialmedia)) {$ReturnString .= "<span class='st_email' displayText='Email'></span> ";}
-			    if (sizeOf($Socialmedia) > 0) {$ReturnString .= "</div>";}	
-		
+				if ($Socialmedia[0] != "") {$ReturnString .= "<div class='ufaq-social-links'>Share: ";}
+			    if(in_array("Facebook", $Socialmedia)) {$ReturnString .= "<span class='st_facebook' data-displayText='Facebook'></span> ";}
+			    if(in_array("Google", $Socialmedia)) {$ReturnString .= "<span class='st_googleplus' data-displayText='Google +'></span> ";}
+			    if(in_array("Twitter", $Socialmedia)) {$ReturnString .= "<span class='st_twitter' data-displayText='Tweet'></span> ";}
+			    if(in_array("Linkedin", $Socialmedia)) {$ReturnString .= "<span class='st_linkedin' data-displayText='LinkedIn'></span> ";}
+			    if(in_array("Pinterest", $Socialmedia)) {$ReturnString .= "<span class='st_pinterest' data-displayText='Pinterest'></span> ";}
+			    if(in_array("Email", $Socialmedia)) {$ReturnString .= "<span class='st_email' data-displayText='Email'></span> ";}
+			    if ($Socialmedia[0] != "") {$ReturnString .= "</div>";}	
+				
+				$ReturnString .= "</div>";
 				$ReturnString .= "</div>";
 			}
 		}

@@ -13,7 +13,7 @@ function EWD_UFAQ_UpdateOptions() {
 		$Order_By_Setting = $_POST['order_by_setting'];
 		$Order_Setting = $_POST['order_setting'];
         $Socialmedia_Array = $_POST['Socialmedia'];
-        $socialmedia= implode(",", $Socialmedia_Array);
+        if (is_array($Socialmedia_Array)) {$socialmedia= implode(",", $Socialmedia_Array);}
 
 
 		

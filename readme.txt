@@ -59,6 +59,11 @@ The shortcode accepts two attributes, "include_category" and "exclude_category",
 2. Sample FAQ page
 
 == Changelog ==
+= 0.7 =
+- Fixed an unclosed div tag
+- 'Share' text is hidden when no social media selected
+- Fixed a display message error
+
 = 0.6 =
 - Fixed a bug with the AJAX search feature
 
