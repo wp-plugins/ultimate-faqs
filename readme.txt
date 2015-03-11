@@ -8,52 +8,79 @@ License URI:http://www.gnu.org/licenses/gpl-3.0.html
 
 A plugin that lets you create FAQs (frequently asked questions), organize them, publicize them, etc. and insert them using shortcodes
 
-== Description ==
+== Description == 
 
-A plugin that lets you create FAQs (frequently asked questions), organize them, publicize them, etc. and insert them using shortcodes
+Create, organize and publicize your Frequently Asked Questions in no time through your Wordpress Admin Panel with this easy to use plugin.
 
-**Through the WordPress admin panel, you can:**
+= Key Features =
+
 * Create FAQ categories
-* Create FAQ posts and assign categories to them
-* Insert FAQ posts using shortcodes (by FAQ name, category, include/exclude etc.)
-* Select animation options for displaying FAQ posts
+* Create FAQ posts and assign to categories to them
+* An AJAX search form
+* Export all FAQs to a PDF to create a user manual
 * Insert custom CSS to style your FAQ posts
+* Select animation options for displaying FAQ posts
 * Toggle accordion (close open FAQ when a new one is opened) behaviour on/off
+* Share on social media 
 
-**Upcoming features:**
-* FAQ statistics, so you know which posts are read most frequently
-* FAQ search either with page reloads or using AJAX
-* Ability to receive suggested FAQs from visitors
-* Up/down voting of FAQ posts
-* Export all FAQs to a PDF, to easily create a user manual
-* Shortcodes for popular and recent posts
+= Shortcodes =
 
-**Current Shortcodes:**
-* [ultimate-faqs]: display all FAQs, or only specific categories using "include_category" and "exclude_category" attributes (both take a comma-separated list of category slugs)
-* [select-faq]: display specific FAQ posts, using the attributes "faq_name", "faq_slug" and "faq_id" which take comma-separated lists of post names, slugs and ids respectively
-* [ultimate-faq-search]: display a search form that allows users to find FAQs with a specific string in the title or body of the post
+* [ultimate-faqs]: display all FAQs, or only specific categories using ?include_category? and ?exclude_category? attributes (both take a comma-separated list of category slugs)
+* [select-faq]: display specific FAQ posts, using the attributes ?faq_name?, ?faq_slug? and ?faq_id? which take comma-separated lists of post names, slugs and ids respectively.
+* [ultimate-faq-search]: display a search form that allows users to find FAQs with a specific string in the title or body of the post.
 
-Please head to the "Support" tab to report errors or make suggestions.
-Demo videos will be posted as soon as they are available.
+Check out our Frequently Asked Questions here:
+<https://wordpress.org/plugins/ultimate-faqs/faq/>
 
-== Installation ==
+Please head to the "Support" forum to report issues or make suggestions:
+<https://wordpress.org/support/plugin/ultimate-faqs>
 
-1. Upload the `ultimate-faq` folder to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Use the newly created admin menu to create FAQ and FAQ categories
-4. Put your FAQs on the front-end of your site with the "[ultimate-faqs]" shortcode
+
 
 --------------------------------------------------------------
 
 
 
+
 == Frequently Asked Questions ==
 
-= What attributes does the "[ultimate-faqs]" shortcode accept? =
+= How do I get my FAQs to show up on my page? =
 
-The shortcode accepts two attributes, "include_category" and "exclude_category", both take a comma-separated list of category slugs.
+Try adding the shortcode ?ultimate-faqs? to whatever page you'd like to display it on. 
 
-== Screenshots ==
+= What are the current FAQ shortcodes? =
+
+* [ultimate-faqs]: display all FAQs, or only specific categories using "include_category" and "exclude_category" attributes (both take a comma-separated list of category slugs) 
+* [select-faq]: display specific FAQ posts, using the attributes ?faq_name?, ?faq_slug? and ?faq_id? which take comma-separated lists of post names, slugs and ids respectively.
+* [ultimate-faq-search]: display a search form that allows users to find FAQs with a specific string in the title or body of the post.
+
+= What attributes does the ?ultimate-faqs? shortcode accept? =
+
+The shortcode accepts two attributes, ?include_category? and ?exclude_category?, both take a comma-separated list of category slugs.
+
+= Can I hide my FAQ categories? =
+
+Yes, you can choose to display or hide categories on the FAQ settings page.
+
+= Is it possible to re-order my FAQS? =
+
+Currently you can choose between ascending or descending ordering by either Title, Date Created, or Date Modified. 
+
+= How can I make my FAQS sharable over social media? =
+
+On the FAQ settings page you can choose to link to twitter, facebook and more!
+
+= How do I make my FAQ?s searchable? =
+
+You can use the shortcode, ?ultimate-faq-search?, that displays an AJAX search form.
+
+= How do I customize my FAQs, for example, to change the font? =
+
+You can customize the plugin by adding code to the Custom CSS box on the settings page, go to the "Custom CSS" box. For example to change the font you might want to add something like:
+?.ufaq-faq-title h4, .ufaq-faq-category-title h4  {font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;}?
+
+For more questions and support you can post in the support forum:
+<https://wordpress.org/support/plugin/ultimate-faqs>
 
 1. Admin area
 2. Sample FAQ page
