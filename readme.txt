@@ -87,6 +87,9 @@ For more questions and support you can post in the support forum:
 2. Sample FAQ page
 
 == Changelog ==
+= 0.8 =
+- Fixed a small messaging error
+
 = 0.7 =
 - Fixed an unclosed div tag
 - 'Share' text is hidden when no social media selected
