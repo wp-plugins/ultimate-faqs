@@ -2,7 +2,7 @@
 Contributors: Rustaurius, EtoileWebDesign
 Tags: frequently asked questions, FAQ, easy FAQ, knowledge base, simple FAQ, FAQ categories, FAQs, knowledgebase, answer, answers, faq page, FAQ Plugin, help, help desk, helpdesk, questions, wordpress faq, faq list, custom post type with accordion, faq list, faq with accordion, jquery ui accordion, jquery-ui, shortcodes, wordpress, WordPress Plugin, Categories, social media
 Requires at least: 3.5.0
-Tested up to: 4.1
+Tested up to: 4.2
 License: GPLv3
 License URI:http://www.gnu.org/licenses/gpl-3.0.html
 
