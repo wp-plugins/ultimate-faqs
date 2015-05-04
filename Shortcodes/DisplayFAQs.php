@@ -134,7 +134,7 @@ function Display_FAQs($atts) {
 			}
 		}
 	
-		if ($Category != "EWD_UFAQ_ALL_CATEGORIES") {
+		if ($Category != "EWD_UFAQ_ALL_CATEGORIES" and sizeOf($faqs) > 0) {
 			$ReturnString .= "</div>";
 		}
 	}

@@ -87,6 +87,9 @@ For more questions and support you can post in the support forum:
 2. Sample FAQ page
 
 == Changelog ==
+= 0.9 =
+- Fixed a display error with group by categories
+
 = 0.8 =
 - Fixed a small messaging error
 
