@@ -26,7 +26,7 @@ function UFAQ_AJAX_Search($atts) {
     $ReturnString .= "<input type='hidden' name'orderby' value='" . $orderby . "' id='ufaq-orderby' />";
     $ReturnString .= "<input type='hidden' name'order' value='" . $order . "' id='ufaq-order' />";
     $ReturnString .= "<input type='hidden' name'post_count' value='" . $post_count . "' id='ufaq-post-count' />";
-    $ReturnString .= "<input type='text' class='ufaq-text-input' name='Question ' placeholder='" . __('Enter your question...', "EWD_UFAQ") . "'>";
+    $ReturnString .= "<input type='text' id='ufaq-ajax-text-input' class='ufaq-text-input' name='Question ' placeholder='" . __('Enter your question...', "EWD_UFAQ") . "'>";
     $ReturnString .= "</div>";
     $ReturnString .= "<label for='Submit'></label><input type='button' id='ufaq-ajax-search-btn' class='ewd-otp-submit pure-button pure-button-primary' name='Search' value='" . __('Search', "EWD_UFAQ") . "'>";
     $ReturnString .= "</form>";

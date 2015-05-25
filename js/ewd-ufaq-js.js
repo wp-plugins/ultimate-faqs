@@ -30,6 +30,9 @@ function ufaqSetClickHandlers() {
 		var selectedIdString = 'ufaq-body-'+post_id;
 		
 		if (jQuery('#'+selectedIdString).hasClass("ewd-ufaq-hidden")) {
+			var data = 'post_id=' + post_id + '&action=ufaq_record_view';
+    		jQuery.post(ajaxurl, data, function(response) {});
+
 			jQuery('#ufaq-excerpt-'+post_id).addClass("ewd-ufaq-hidden");
 			if (reveal_effect != "none") {runEffect("show", post_id);}
 			else {jQuery('#ufaq-body-'+post_id).removeClass("ewd-ufaq-hidden");}
@@ -62,7 +65,21 @@ jQuery(document).ready(function() {
 		Ufaq_Ajax_Reload();
     });
 
+	jQuery('#ufaq-ajax-form').submit( function(event) {
+		event.preventDefault();
+		Ufaq_Ajax_Reload();
+	});
 
+	jQuery('#ufaq-ajax-text-input').keyup(function() {
+		Ufaq_Ajax_Reload();
+	});
+
+	if (typeof(Display_FAQ_ID) != "undefined" && Display_FAQ_ID !== null) {
+		var div = jQuery('#ufaq-title-' + Display_FAQ_ID)[0];
+		var evObj = document.createEvent('MouseEvents');
+		evObj.initMouseEvent('click', true, true, window);
+		div.dispatchEvent(evObj);
+	}
 });
 
 function Ufaq_Ajax_Reload() {

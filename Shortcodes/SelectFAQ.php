@@ -57,7 +57,7 @@ function Display_Select_FAQs($atts) {
 		$ReturnString .= "<div class='ufaq-faq-div'>";
 
 		$ReturnString .= "<div class='ufaq-faq-title' id='ufaq-title-" . $faq->ID . "' data-postid='" . $faq->ID . "'>";
-		$ReturnString .= "<h3><a href='" . get_permalink($faq->ID) . "'>" . $faq->post_title . "</a></h3>";
+		$ReturnString .= "<h4 ><a class='ewd-ufaq-post-margin-symbol'  href='" . get_permalink($faq->ID) . "'>+ </a><a class='ewd-ufaq-post-margin'  href='" . get_permalink($faq->ID) . "'>" .$faq->post_title . " </a></h4>";
 		$ReturnString .= "</div>";
 
 		if (strlen($faq->post_excerpt) > 0) {$ReturnString .= "<div class='ufaq-faq-excerpt' id='ufaq-excerpt-" . $faq->ID . "'>" . $faq->post_excerpt . "</div>";}

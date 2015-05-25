@@ -9,6 +9,7 @@
 		$Group_By_Order = get_option("EWD_UFAQ_Group_By_Order");
 		$Order_By_Setting = get_option("EWD_UFAQ_Order_By");
 		$Order_Setting = get_option("EWD_UFAQ_Order");
+		$Include_Permalink = get_option("EWD_UFAQ_Include_Permalink");
         $Socialmedia_String = get_option("EWD_UFAQ_Social_Media");
         $Socialmedia = explode(",", $Socialmedia_String);
 ?>
@@ -140,6 +141,16 @@
 	<label title='Yes'><input type='radio' name='order_setting' value='ASC' <?php if($Order_Setting == "ASC") {echo "checked='checked'";} ?> /> <span>Ascending</span></label><br />
 	<label title='No'><input type='radio' name='order_setting' value='DESC' <?php if($Order_Setting == "DESC") {echo "checked='checked'";} ?> /> <span>Descending</span></label><br />	
 	<p>Should FAQ be ascending or descending order, based on the ordering criteria above?</p>
+	</fieldset>
+</td>
+</tr>
+<tr>
+<th scope="row">Include Permalink Icon</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>Include Permalink Icon</span></legend>
+	<label title='Yes'><input type='radio' name='include_permalink' value='Yes' <?php if($Include_Permalink == "Yes") {echo "checked='checked'";} ?> /> <span>Yes</span></label><br />
+	<label title='No'><input type='radio' name='include_permalink' value='No' <?php if($Include_Permalink == "No") {echo "checked='checked'";} ?> /> <span>No</span></label><br />	
+	<p>Should an icon to link directly to each question be displayed?</p>
 	</fieldset>
 </td>
 </tr>

@@ -12,6 +12,7 @@ function EWD_UFAQ_UpdateOptions() {
 		$Group_By_Order = $_POST['group_by_order'];
 		$Order_By_Setting = $_POST['order_by_setting'];
 		$Order_Setting = $_POST['order_setting'];
+		$Include_Permalink = $_POST['include_permalink'];
         $Socialmedia_Array = $_POST['Socialmedia'];
         if (is_array($Socialmedia_Array)) {$socialmedia= implode(",", $Socialmedia_Array);}
 
@@ -26,6 +27,7 @@ function EWD_UFAQ_UpdateOptions() {
 		$Group_By_Order = stripslashes_deep($Group_By_Order);
 		$Order_By_Setting = stripslashes_deep($Order_By_Setting);
 		$Order_Setting = stripslashes_deep($Order_Setting);
+		$Include_Permalink = stripslashes_deep($Include_Permalink);
         $socialmedia = stripslashes_deep($socialmedia);
 		
 		update_option('EWD_UFAQ_Custom_CSS', $Custom_CSS);
@@ -37,6 +39,7 @@ function EWD_UFAQ_UpdateOptions() {
 		update_option('EWD_UFAQ_Group_By_Order', $Group_By_Order);
 		update_option('EWD_UFAQ_Order_By', $Order_By_Setting);
 		update_option('EWD_UFAQ_Order', $Order_Setting);
+		update_option('EWD_UFAQ_Include_Permalink', $Include_Permalink);
         update_option('EWD_UFAQ_Social_Media',  $socialmedia);
 }
 

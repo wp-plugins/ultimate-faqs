@@ -14,6 +14,7 @@ function Display_FAQs($atts) {
 	$Group_By_Order = get_option("EWD_UFAQ_Group_By_Order");
 	$Order_By_Setting = get_option("EWD_UFAQ_Order_By");
 	$Order_Setting = get_option("EWD_UFAQ_Order");
+	$Include_Permalink = get_option("EWD_UFAQ_Include_Permalink");
     $Socialmedia_String = get_option("EWD_UFAQ_Social_Media");
     $Socialmedia = explode(",", $Socialmedia_String);
 	$ReturnString = "";
@@ -25,6 +26,7 @@ function Display_FAQs($atts) {
 			'exclude_category' => "",
 			'orderby' => "",
 			'order' => "",
+			'ajax' => "No",
             'post_count'=>-1),
 			$atts
 		)
@@ -59,6 +61,8 @@ function Display_FAQs($atts) {
 	}
 
 	$ReturnString .= "<div class='ufaq-faq-list' id='ufaq-faq-list'>";
+
+	if (isset($_GET['Display_FAQ'])) {$ReturnString .= "<script>var Display_FAQ_ID = " . $_GET['Display_FAQ'] . ";</script>";}
 
 	foreach ($Category_Array as $Category) {
 
@@ -128,6 +132,14 @@ function Display_FAQs($atts) {
 			    if(in_array("Pinterest", $Socialmedia)) {$ReturnString .= "<span class='st_pinterest' data-displayText='Pinterest'></span> ";}
 			    if(in_array("Email", $Socialmedia)) {$ReturnString .= "<span class='st_email' data-displayText='Email'></span> ";}
 			    if ($Socialmedia[0] != "") {$ReturnString .= "</div>";}	
+
+			    if ($Include_Permalink == "Yes" and $ajax == "No") {
+			    	$ReturnString .= "<div class='ufaq-permalink'>Permalink: ";
+			    	$ReturnString .= "<a href='" . get_the_permalink() . "?Display_FAQ=" . $faq->ID . "'>";
+			    	$ReturnString .= "<div class='ufaq-permalink-image'></div>";
+			    	$ReturnString .= "</a>";
+			    	$ReturnString .= "</div>";
+			    }
 				
 				$ReturnString .= "</div>";
 				$ReturnString .= "</div>";

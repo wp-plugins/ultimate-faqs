@@ -8,15 +8,20 @@
 
 
 .ewd-ufaq-post-margin{
-
   margin-left: 10px;
   text-decoration: none;
 }
 
 .ewd-ufaq-post-margin-symbol{
-
-
     text-decoration: none;
+}
+
+.ufaq-permalink-image {
+	background: url("../images/insert_link.png");
+	height: 21px;
+	width: 30px;
+	margin-top: -25px;
+	margin-left: 70px;
 }
 
 /*.ufaq-faq-title {

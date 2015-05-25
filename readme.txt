@@ -1,8 +1,8 @@
 === Plugin Name ===
 Contributors: Rustaurius, EtoileWebDesign
-Tags: frequently asked questions, FAQ, easy FAQ, knowledge base, simple FAQ, FAQ categories, FAQs, knowledgebase, answer, answers, faq page, FAQ Plugin, help, help desk, helpdesk, questions, wordpress faq, faq list, custom post type with accordion, faq list, faq with accordion, jquery ui accordion, jquery-ui, shortcodes, wordpress, WordPress Plugin, Categories, social media
+Tags: frequently asked questions, FAQ, easy FAQ, knowledge base, simple FAQ, FAQ categories, FAQs, knowledgebase, answer, answers, faq page, FAQ Plugin, help, help desk, helpdesk, questions, wordpress faq, faq list, custom post type with accordion, faq list, faq with accordion, jquery ui accordion, jquery-ui, shortcodes, wordpress, WordPress Plugin, Categories, social media, widgets, statistics, AJAX
 Requires at least: 3.5.0
-Tested up to: 4.2
+Tested up to: 4.2.2
 License: GPLv3
 License URI:http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -87,6 +87,14 @@ For more questions and support you can post in the support forum:
 2. Sample FAQ page
 
 == Changelog ==
+= 0.10 =
+- Added in "# of Views" statistics for FAQ posts
+- Added in an FAQ list widget
+- Added in an FAQ category widget
+- Added in the ability to link directly to a post in a list
+- Added the "+" symbol for single FAQ posts
+- Fixed the AJAX error for searching, removed the search button and updated results dynamically
+
 = 0.9 =
 - Fixed a display error with group by categories
 
