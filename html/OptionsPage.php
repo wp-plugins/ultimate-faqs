@@ -10,6 +10,7 @@
 		$Order_By_Setting = get_option("EWD_UFAQ_Order_By");
 		$Order_Setting = get_option("EWD_UFAQ_Order");
 		$Include_Permalink = get_option("EWD_UFAQ_Include_Permalink");
+		$Display_All_Answers = get_option("EWD_UFAQ_Display_All_Answers");
         $Socialmedia_String = get_option("EWD_UFAQ_Social_Media");
         $Socialmedia = explode(",", $Socialmedia_String);
 ?>
@@ -151,6 +152,16 @@
 	<label title='Yes'><input type='radio' name='include_permalink' value='Yes' <?php if($Include_Permalink == "Yes") {echo "checked='checked'";} ?> /> <span>Yes</span></label><br />
 	<label title='No'><input type='radio' name='include_permalink' value='No' <?php if($Include_Permalink == "No") {echo "checked='checked'";} ?> /> <span>No</span></label><br />	
 	<p>Should an icon to link directly to each question be displayed?</p>
+	</fieldset>
+</td>
+</tr>
+<tr>
+<th scope="row">Display All Answers</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>Display All Answers</span></legend>
+	<label title='Yes'><input type='radio' name='display_all_answers' value='Yes' <?php if($Display_All_Answers == "Yes") {echo "checked='checked'";} ?> /> <span>Yes</span></label><br />
+	<label title='No'><input type='radio' name='display_all_answers' value='No' <?php if($Display_All_Answers == "No") {echo "checked='checked'";} ?> /> <span>No</span></label><br />	
+	<p>Should the answer to each question be displayed when the page loads?</p>
 	</fieldset>
 </td>
 </tr>

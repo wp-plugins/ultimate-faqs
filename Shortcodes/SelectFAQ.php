@@ -5,6 +5,7 @@ function Display_Select_FAQs($atts) {
 	$Custom_CSS = get_option("EWD_UFAQ_Custom_CSS");
 	$FAQ_Accordion = get_option("EWD_UFAQ_FAQ_Accordion");
 	$Reveal_Effect = get_option("EWD_UFAQ_Reveal_Effect");
+	$Display_All_Answers = get_option("EWD_UFAQ_Display_All_Answers");
 
 	$ReturnString = "";
 
@@ -61,7 +62,9 @@ function Display_Select_FAQs($atts) {
 		$ReturnString .= "</div>";
 
 		if (strlen($faq->post_excerpt) > 0) {$ReturnString .= "<div class='ufaq-faq-excerpt' id='ufaq-excerpt-" . $faq->ID . "'>" . $faq->post_excerpt . "</div>";}
-		$ReturnString .= "<div class='ufaq-faq-body ewd-ufaq-hidden' id='ufaq-body-" . $faq->ID . "'>";
+		$ReturnString .= "<div class='ufaq-faq-body ";
+		if ($Display_All_Answers != "Yes") {$ReturnString .= "ewd-ufaq-hidden";}
+		$ReturnString .= "' id='ufaq-body-" . $faq->ID . "'>";
 		$ReturnString .= "<div class='ufaq-faq-post' id='ufaq-post-" . $faq->ID . "'>" . $faq->post_content . "</div>";
 
 		if ($Hide_Categories == "No") {

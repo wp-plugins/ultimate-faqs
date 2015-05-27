@@ -7,7 +7,7 @@ function UFAQ_Search() {
     $Path = ABSPATH . 'wp-load.php';
     include_once($Path);
 
-    echo do_shortcode("[ultimate-faqs search_string='" . $_POST['Q'] . "' include_category='" . $_POST['include_category'] . "' exclude_category='" . $_POST['exclude_category'] . "' orderby='" . $_POST['orderby'] . "' order='" . $_POST['order'] . "' post_count='" . $_POST['post_count'] . "' ajax='Yes']") ;
+    echo do_shortcode("[ultimate-faqs search_string='" . strtolower($_POST['Q']) . "' include_category='" . $_POST['include_category'] . "' exclude_category='" . $_POST['exclude_category'] . "' orderby='" . $_POST['orderby'] . "' order='" . $_POST['order'] . "' post_count='" . $_POST['post_count'] . "' ajax='Yes']") ;
 }
 add_action('wp_ajax_ufaq_search', 'UFAQ_Search');
 add_action( 'wp_ajax_nopriv_ufaq_search', 'UFAQ_Search');

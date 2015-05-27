@@ -15,6 +15,7 @@ function Display_FAQs($atts) {
 	$Order_By_Setting = get_option("EWD_UFAQ_Order_By");
 	$Order_Setting = get_option("EWD_UFAQ_Order");
 	$Include_Permalink = get_option("EWD_UFAQ_Include_Permalink");
+	$Display_All_Answers = get_option("EWD_UFAQ_Display_All_Answers");
     $Socialmedia_String = get_option("EWD_UFAQ_Social_Media");
     $Socialmedia = explode(",", $Socialmedia_String);
 	$ReturnString = "";
@@ -112,7 +113,9 @@ function Display_FAQs($atts) {
 				$ReturnString .= "</div>";
 		
 				if (strlen($faq->post_excerpt) > 0) {$ReturnString .= "<div class='ufaq-faq-excerpt' id='ufaq-excerpt-" . $faq->ID . "'>" . apply_filters('the_content', html_entity_decode($faq->post_excerpt)) . "</div>";}
-				$ReturnString .= "<div class='ufaq-faq-body ewd-ufaq-hidden' id='ufaq-body-" . $faq->ID . "'>";
+				$ReturnString .= "<div class='ufaq-faq-body ";
+				if ($Display_All_Answers != "Yes") {$ReturnString .= "ewd-ufaq-hidden";}
+				$ReturnString .= "' id='ufaq-body-" . $faq->ID . "'>";
 				$ReturnString .= "<div class='ewd-ufaq-post-margin ufaq-faq-post' id='ufaq-post-" . $faq->ID . "'>" . apply_filters('the_content', html_entity_decode($faq->post_content)) . "</div>";
 		
 				if ($Hide_Categories == "No") {
