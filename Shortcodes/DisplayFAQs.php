@@ -32,7 +32,7 @@ function Display_FAQs($atts) {
 			$atts
 		)
 	);
-
+	
 	if ($orderby == "") {$orderby = $Order_By_Setting;}
 	if ($order == "") {$order = $Order_Setting;}
 	if ($Group_By_Category == "Yes") {

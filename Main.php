@@ -7,7 +7,7 @@ Author: Tim Ruse
 Author URI: http://www.EtoileWebDesign.com/wordpress-plugins/
 Terms and Conditions: http://www.etoilewebdesign.com/plugin-terms-and-conditions/
 Text Domain: EWD_UFAQ
-Version: 0.11
+Version: 0.12
 */
 
 global $ewd_ufaq_message;
@@ -44,7 +44,7 @@ add_action('after_setup_theme', 'EWD_UFAQ_localization_setup');
 
 // Add settings link on plugin page
 function EWD_UFAQ_plugin_settings_link($links) {
-  $settings_link = '<a href="admin.php?page=EWD-UFAQ-options">Settings</a>';
+  $settings_link = '<a href="edit.php?post_type=ufaq&page=options">Settings</a>';
   array_unshift($links, $settings_link);
   return $links;
 }

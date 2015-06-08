@@ -87,6 +87,9 @@ For more questions and support you can post in the support forum:
 2. Sample FAQ page
 
 == Changelog ==
+= 0.12 =
+- Fixed the settings link from the plugin page
+
 = 0.11 =
 - Fixed an error that made AJAX FAQ search case-sensitive
 - Added in an option to display all FAQ text on page load
