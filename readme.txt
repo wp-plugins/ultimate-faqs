@@ -87,6 +87,9 @@ For more questions and support you can post in the support forum:
 2. Sample FAQ page
 
 == Changelog ==
+= 0.13 =
+- Removed social media buttons temporarily until a better option can be found
+
 = 0.12 =
 - Fixed the settings link from the plugin page
 

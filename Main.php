@@ -7,7 +7,7 @@ Author: Tim Ruse
 Author URI: http://www.EtoileWebDesign.com/wordpress-plugins/
 Terms and Conditions: http://www.etoilewebdesign.com/plugin-terms-and-conditions/
 Text Domain: EWD_UFAQ
-Version: 0.12
+Version: 0.13
 */
 
 global $ewd_ufaq_message;
@@ -78,8 +78,6 @@ function Add_EWD_UFAQ_FrontEnd_Scripts() {
 	wp_enqueue_script("jquery-effects-shake");
 	wp_enqueue_script("jquery-effects-slide");
 	wp_enqueue_script("jquery-effects-transfer");
-	wp_enqueue_script('ewd-ufaq-socialmedia', plugins_url( '/js/ewd-ufaq-socialmedia.js' , __FILE__ ), array(  ));
-	wp_enqueue_script('ewd-ufaq-button', plugins_url( '/js/ewd-ufaq-button.js' , __FILE__ ), array(  ));
 }
 
 
