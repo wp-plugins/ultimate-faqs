@@ -86,7 +86,10 @@ For more questions and support you can post in the support forum:
 1. Admin area
 2. Sample FAQ page
 
-== Changelog ==
+== Changelog == 
+= 0.14 = 
+- Added sorting by FAQ post views and FAQ categories
+
 = 0.13 =
 - Removed social media buttons temporarily until a better option can be found
 
