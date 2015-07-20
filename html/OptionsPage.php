@@ -2,6 +2,7 @@
 		$Custom_CSS = get_option("EWD_UFAQ_Custom_CSS");
 		$FAQ_Accordion = get_option("EWD_UFAQ_FAQ_Accordion");
 		$Hide_Categories = get_option("EWD_UFAQ_Hide_Categories");
+		$Hide_Tags = get_option("EWD_UFAQ_Hide_Tags");
 		$Reveal_Effect = get_option("EWD_UFAQ_Reveal_Effect");
 		
 		$Group_By_Category = get_option("EWD_UFAQ_Group_By_Category");
@@ -47,6 +48,17 @@
 	<label title='Yes'><input type='radio' name='hide_categories' value='Yes' <?php if($Hide_Categories == "Yes") {echo "checked='checked'";} ?> /> <span>Yes</span></label><br />
 	<label title='No'><input type='radio' name='hide_categories' value='No' <?php if($Hide_Categories == "No") {echo "checked='checked'";} ?> /> <span>No</span></label><br />
 	<p>Should the categories for each FAQ be hidden?</p>
+	</fieldset>
+</td>
+</tr>
+
+<tr>
+<th scope="row">Hide Tags</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>Hide Tags</span></legend>
+	<label title='Yes'><input type='radio' name='hide_tags' value='Yes' <?php if($Hide_Tags == "Yes") {echo "checked='checked'";} ?> /> <span>Yes</span></label><br />
+	<label title='No'><input type='radio' name='hide_tags' value='No' <?php if($Hide_Tags == "No") {echo "checked='checked'";} ?> /> <span>No</span></label><br />
+	<p>Should the tags for each FAQ be hidden?</p>
 	</fieldset>
 </td>
 </tr>

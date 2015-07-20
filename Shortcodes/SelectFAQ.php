@@ -7,6 +7,8 @@ function Display_Select_FAQs($atts) {
 	$Reveal_Effect = get_option("EWD_UFAQ_Reveal_Effect");
 	$Display_All_Answers = get_option("EWD_UFAQ_Display_All_Answers");
 
+	$Include_Permalink = get_option("EWD_UFAQ_Include_Permalink");
+
 	$ReturnString = "";
 
 	// Get the attributes passed by the shortcode, and store them in new variables for processing
@@ -53,7 +55,8 @@ function Display_Select_FAQs($atts) {
 
 	$ReturnString .= "<div class='ufaq-faq-list' id='ufaq-faq-list'>";
 	foreach ($faqs as $faq) {
-		$Terms = wp_get_post_terms($faq->ID, 'ufaq-category');
+		$Category_Terms = wp_get_post_terms($faq->ID, 'ufaq-category');
+		$Tag_Terms = wp_get_post_terms($faq->ID, 'ufaq-tag');
 
 		$ReturnString .= "<div class='ufaq-faq-div'>";
 
@@ -69,10 +72,42 @@ function Display_Select_FAQs($atts) {
 
 		if ($Hide_Categories == "No") {
 			$ReturnString .= "<div class='ufaq-faq-categories' id='ufaq-categories-" . $faq->ID . "'>";
-			if (sizeOf($Terms) > 1) {$ReturnString .= "Categories: ";}
+			if (sizeOf($Category_Terms) > 1) {$ReturnString .= "Categories: ";}
 			else {$ReturnString .= "Category: ";}
-			foreach ($Terms as $Term) {$ReturnString .= "<a  href='" . $current_url . "?include_category=" . $Term->slug . "'>" .$Term->name . "</a>, ";}
-			if (sizeOf($Terms) > 0) {$ReturnString = substr($ReturnString, 0, strlen($ReturnString)-2);}
+			foreach ($Category_Terms as $Category_Term) {$ReturnString .= "<a  href='" . $current_url . "?include_category=" . $Category_Term->slug . "'>" .$Category_Term->name . "</a>, ";}
+			if (sizeOf($Category_Terms) > 0) {$ReturnString = substr($ReturnString, 0, strlen($ReturnString)-2);}
+			$ReturnString .= "</div>";
+		}
+
+		if ($Hide_Tags == "No") {
+			$ReturnString .= "<div class='ufaq-faq-tags' id='ufaq-tags-" . $faq->ID . "'>";
+			if (sizeOf($Tag_Terms) > 1) {$ReturnString .= "Tags: ";}
+			else {$ReturnString .= "Tag: ";}
+			foreach ($Tag_Terms as $Tag_Term) {$ReturnString .= "<a  href='" . $current_url . "?include_tag=" . $Tag_Term->slug . "'>" .$Tag_Term->name . "</a>, ";}
+			if (sizeOf($Tag_Terms) > 0) {$ReturnString = substr($ReturnString, 0, strlen($ReturnString)-2);}
+			$ReturnString .= "</div>";
+		}
+
+		if ($Socialmedia[0] != "") {
+			$ReturnString .= "<div class='ufaq-social-links'>Share: ";
+			$ReturnString .= "<ul class='rrssb-buttons'>";
+		}
+		if(in_array("Facebook", $Socialmedia)) {$ReturnString .= EWD_UFAQ_Add_Social_Media_Buttons("Facebook", $FAQ_Permalink, $faq->post_title);}
+		if(in_array("Google", $Socialmedia)) {$ReturnString .= EWD_UFAQ_Add_Social_Media_Buttons("Google", $FAQ_Permalink, $faq->post_title);}
+		if(in_array("Twitter", $Socialmedia)) {$ReturnString .= EWD_UFAQ_Add_Social_Media_Buttons("Twitter", $FAQ_Permalink, $faq->post_title);}
+		if(in_array("Linkedin", $Socialmedia)) {$ReturnString .= EWD_UFAQ_Add_Social_Media_Buttons("Linkedin", $FAQ_Permalink, $faq->post_title);}
+		if(in_array("Pinterest", $Socialmedia)) {$ReturnString .= EWD_UFAQ_Add_Social_Media_Buttons("Pinterest", $FAQ_Permalink, $faq->post_title);}
+		if(in_array("Email", $Socialmedia)) {$ReturnString .= EWD_UFAQ_Add_Social_Media_Buttons("Email", $FAQ_Permalink, $faq->post_title);}
+		if ($Socialmedia[0] != "") {
+			$ReturnString .= "</ul>";
+			$ReturnString .= "</div>";
+		}
+
+		if ($Include_Permalink == "Yes" and $ajax == "No") {
+			$ReturnString .= "<div class='ufaq-permalink'>Permalink: ";
+			$ReturnString .= "<a href='" . $FAQ_Permalink . "'>";
+			$ReturnString .= "<div class='ufaq-permalink-image'></div>";
+			$ReturnString .= "</a>";
 			$ReturnString .= "</div>";
 		}
 

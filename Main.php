@@ -7,7 +7,7 @@ Author: Tim Ruse
 Author URI: http://www.EtoileWebDesign.com/wordpress-plugins/
 Terms and Conditions: http://www.etoilewebdesign.com/plugin-terms-and-conditions/
 Text Domain: EWD_UFAQ
-Version: 0.14
+Version: 0.16
 */
 
 global $ewd_ufaq_message;
@@ -61,6 +61,7 @@ function Add_EWD_UFAQ_Scripts() {
 add_action( 'wp_enqueue_scripts', 'Add_EWD_UFAQ_FrontEnd_Scripts' );
 function Add_EWD_UFAQ_FrontEnd_Scripts() {
 	wp_enqueue_script('ewd-ufaq-js', plugins_url( '/js/ewd-ufaq-js.js' , __FILE__ ), array( 'jquery' ));
+	wp_enqueue_script('rrssb', plugins_url( '/js/rrssb.js' , __FILE__ ), array( 'jquery' ));
 
 	wp_enqueue_script("jquery-ui-core");
 	wp_enqueue_script("jquery-effects-core");
@@ -85,6 +86,9 @@ add_action( 'wp_enqueue_scripts', 'EWD_UFAQ_Add_Stylesheet' );
 function EWD_UFAQ_Add_Stylesheet() {
     wp_register_style( 'ewd-ufaq-style', plugins_url('css/ewd-ufaq-styles.css', __FILE__) );
     wp_enqueue_style( 'ewd-ufaq-style' );
+
+    wp_register_style( 'ewd-ufaq-rrssb', plugins_url('css/rrssb-min.css', __FILE__) );
+    wp_enqueue_style( 'ewd-ufaq-rrssb' );
 }
 
 add_action('activated_plugin','save_ufaq_error');
@@ -112,6 +116,7 @@ $UFAQ_Full_Version = get_option("EWD_UFAQ_Full_Version");
 }*/
 
 include "Functions/Error_Notices.php";
+include "Functions/EWD_UFAQ_Add_Social_Media_Buttons.php";
 include "Functions/EWD_UFAQ_Add_Views_Column.php";
 include "Functions/EWD_UFAQ_Export_To_PDF.php";
 include "Functions/EWD_UFAQ_Import.php";
@@ -126,6 +131,7 @@ include "Functions/Update_Admin_Databases.php";
 include "Functions/Update_EWD_UFAQ_Content.php";
 
 include "Shortcodes/DisplayFAQs.php";
+include "Shortcodes/Display_Popular_FAQs.php";
 include "Shortcodes/SelectFAQ.php";
 include "Shortcodes/Display_Recent_FAQs.php";
 include "Shortcodes/Display_FAQ_Search.php";

@@ -7,6 +7,7 @@ function Display_Popular_FAQs($atts) {
             $atts
         )
     );
+    echo "called";
     $ReturnString = do_shortcode("[ultimate-faqs post_count=".$post_count." orderby='popular']");
 
 		return $ReturnString;

@@ -52,14 +52,26 @@ function EWD_UFAQ_Create_Category_Taxonomy() {
 			'add_new_item' => __('Add New FAQ Category', 'EWD_UFAQ'),
 			'new_item_name' => __('New FAQ Category Name', 'EWD_UFAQ'),
 			'menu_name' => __('FAQ Categories', 'EWD_UFAQ'),
-		),
+		)
+	));
 
-		// Control the slugs used for this taxonomy
-		/*'rewrite' => array(
-			'slug' => 'console', // This controls the base slug that will display before each term
-			'with_front' => false, // Don't display the category base before "/locations/"
-			'hierarchical' => true // This will allow URL's like "/locations/boston/cambridge/"
-		),*/
+	register_taxonomy('ufaq-tag', 'ufaq', array(
+		// Hierarchical taxonomy (like categories)
+		'hierarchical' => false,
+		// This array of options controls the labels displayed in the WordPress Admin UI
+		'labels' => array(
+			'name' => __('FAQ Tags', 'EWD_UFAQ'),
+			'singular_name' => __('FAQ Tag', 'EWD_UFAQ'),
+			'search_items' =>  __('Search FAQ Tags', 'EWD_UFAQ'),
+			'all_items' => __('All FAQ Tags', 'EWD_UFAQ'),
+			'parent_item' => __('Parent FAQ Tag', 'EWD_UFAQ'),
+			'parent_item_colon' => __('Parent FAQ Tag:', 'EWD_UFAQ'),
+			'edit_item' => __('Edit FAQ Tag', 'EWD_UFAQ'),
+			'update_item' => __('Update FAQ Tag', 'EWD_UFAQ'),
+			'add_new_item' => __('Add New FAQ Tag', 'EWD_UFAQ'),
+			'new_item_name' => __('New FAQ Tag Name', 'EWD_UFAQ'),
+			'menu_name' => __('FAQ Tags', 'EWD_UFAQ'),
+		)
 	));
 }
 add_action( 'init', 'EWD_UFAQ_Create_Category_Taxonomy', 0 );
