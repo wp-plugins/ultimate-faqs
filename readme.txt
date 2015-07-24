@@ -87,6 +87,10 @@ For more questions and support you can post in the support forum:
 2. Sample FAQ page
 
 == Changelog == 
+= 0.17 =
+- Fixed a potential display issue for un-viewed FAQs
+- Fixed a jQuery error
+
 = 0.16 = 
 - Added in a "popular-faqs" shortcode that can be used to display a number of the most looked at FAQs
 - Added back in new and improved social media buttons

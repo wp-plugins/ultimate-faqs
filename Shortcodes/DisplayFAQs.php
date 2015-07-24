@@ -90,7 +90,6 @@ function Display_FAQs($atts) {
 	
 		$params = array('posts_per_page' => $post_count,
 						'post_type' => 'ufaq',
-						'meta_key' => 'ufaq_view_count',
 						'orderby' => $orderby,
 						'order' => $order,
 						'tax_query' => array('relation' => 'AND',
@@ -100,7 +99,7 @@ function Display_FAQs($atts) {
 										$category_array
 									)
 				);
-		
+		if ($orderby == "popular") {$params['meta_key'] = 'ufaq_view_count';}
 		$faqs = get_posts($params);
 	
 		if ($Custom_CSS != "") {$ReturnString .= "<style>" . $Custom_CSS . "</style>";}
