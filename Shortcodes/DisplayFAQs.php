@@ -34,6 +34,8 @@ function Display_FAQs($atts) {
 		)
 	);
 	
+	$search_string = strtolower($search_string);
+
 	if ($orderby == "") {$orderby = $Order_By_Setting;}
 	if ($orderby == "popular") {$orderby = "meta_value_number";}
 
@@ -118,7 +120,7 @@ function Display_FAQs($atts) {
 	    }
 	
 		foreach ($faqs as $faq) {
-			if ($search_string == "" or strpos($faq->post_content, $search_string) !== false or strpos($faq->post_title, $search_string) !== false) {
+			if ($search_string == "" or strpos(strtolower($faq->post_content), $search_string) !== false or strpos(strtolower($faq->post_title), $search_string) !== false) {
 				$Category_Terms = wp_get_post_terms($faq->ID, 'ufaq-category');
 				$Tag_Terms = wp_get_post_terms($faq->ID, 'ufaq-tag');
 

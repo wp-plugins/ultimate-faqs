@@ -87,6 +87,9 @@ For more questions and support you can post in the support forum:
 2. Sample FAQ page
 
 == Changelog == 
+= 0.18 =
+- Fixed a searching error which didn't display some results 
+
 = 0.17 =
 - Fixed a potential display issue for un-viewed FAQs
 - Fixed a jQuery error
