@@ -30,28 +30,36 @@ function ufaqSetClickHandlers() {
 		var selectedIdString = 'ufaq-body-'+post_id;
 		
 		if (jQuery('#'+selectedIdString).hasClass("ewd-ufaq-hidden")) {
-			var data = 'post_id=' + post_id + '&action=ufaq_record_view';
-    		jQuery.post(ajaxurl, data, function(response) {});
-
-			jQuery('#ufaq-excerpt-'+post_id).addClass("ewd-ufaq-hidden");
-			if (reveal_effect != "none") {runEffect("show", post_id);}
-			else {jQuery('#ufaq-body-'+post_id).removeClass("ewd-ufaq-hidden");}
-			
-			if (faq_accordion) {
-				jQuery('.ufaq-faq-body').each(function() {					
-					if (jQuery(this).attr("id") != selectedIdString) {
-				  		jQuery(this).addClass("ewd-ufaq-hidden");
-						jQuery(this).removeAttr("style");
-					}
-				});
-			}
+			EWD_UFAQ_Reveal_FAQ(post_id);
 		}
 		else {
-			jQuery('#ufaq-excerpt-'+post_id).removeClass("ewd-ufaq-hidden");
-			if (reveal_effect != "none") {runEffect("hide", post_id);}
-			else {jQuery('#ufaq-body-'+post_id).addClass("ewd-ufaq-hidden");}
+			EWD_UFAQ_Hide_FAQ(post_id);
 		}
 	});
+}
+
+function EWD_UFAQ_Reveal_FAQ(post_id) {
+	var data = 'post_id=' + post_id + '&action=ufaq_record_view';
+    jQuery.post(ajaxurl, data, function(response) {});
+
+	jQuery('#ufaq-excerpt-'+post_id).addClass("ewd-ufaq-hidden");
+	if (reveal_effect != "none") {runEffect("show", post_id);}
+	else {jQuery('#ufaq-body-'+post_id).removeClass("ewd-ufaq-hidden");}
+			
+	if (faq_accordion) {
+		jQuery('.ufaq-faq-body').each(function() {					
+			if (jQuery(this).attr("id") != selectedIdString) {
+		  		jQuery(this).addClass("ewd-ufaq-hidden");
+				jQuery(this).removeAttr("style");
+			}
+		});
+	}
+}
+
+function EWD_UFAQ_Hide_FAQ(post_id) {
+	jQuery('#ufaq-excerpt-'+post_id).removeClass("ewd-ufaq-hidden");
+	if (reveal_effect != "none") {runEffect("hide", post_id);}
+	else {jQuery('#ufaq-body-'+post_id).addClass("ewd-ufaq-hidden");}
 }
 
 jQuery(document).ready(function() {
@@ -75,10 +83,7 @@ jQuery(document).ready(function() {
 	});
 
 	if (typeof(Display_FAQ_ID) != "undefined" && Display_FAQ_ID !== null) {
-		var div = jQuery('#ufaq-title-' + Display_FAQ_ID)[0];
-		var evObj = document.createEvent('MouseEvents');
-		evObj.initMouseEvent('click', true, true, window);
-		div.dispatchEvent(evObj);
+		EWD_UFAQ_Reveal_FAQ(Display_FAQ_ID);
 	}
 });
 
