@@ -27,10 +27,10 @@ function ufaqSetClickHandlers() {
 		
 		event.preventDefault();
 		
-		var selectedIdString = 'ufaq-body-'+post_id;
+		var selectedIDString = 'ufaq-body-'+post_id;
 		
-		if (jQuery('#'+selectedIdString).hasClass("ewd-ufaq-hidden")) {
-			EWD_UFAQ_Reveal_FAQ(post_id);
+		if (jQuery('#'+selectedIDString).hasClass("ewd-ufaq-hidden")) {
+			EWD_UFAQ_Reveal_FAQ(post_id, selectedIDString);
 		}
 		else {
 			EWD_UFAQ_Hide_FAQ(post_id);
@@ -38,7 +38,7 @@ function ufaqSetClickHandlers() {
 	});
 }
 
-function EWD_UFAQ_Reveal_FAQ(post_id) {
+function EWD_UFAQ_Reveal_FAQ(post_id, selectedIDString) {
 	var data = 'post_id=' + post_id + '&action=ufaq_record_view';
     jQuery.post(ajaxurl, data, function(response) {});
 
@@ -48,7 +48,7 @@ function EWD_UFAQ_Reveal_FAQ(post_id) {
 			
 	if (faq_accordion) {
 		jQuery('.ufaq-faq-body').each(function() {					
-			if (jQuery(this).attr("id") != selectedIdString) {
+			if (jQuery(this).attr("id") != selectedIDString) {
 		  		jQuery(this).addClass("ewd-ufaq-hidden");
 				jQuery(this).removeAttr("style");
 			}

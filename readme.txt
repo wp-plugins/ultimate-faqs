@@ -87,6 +87,9 @@ For more questions and support you can post in the support forum:
 2. Sample FAQ page
 
 == Changelog ==
+= 0.20 =
+- Fixed the accordion effect which was broken in the V0.19 browser compatibilty fix
+
 = 0.19 =
 - Fixed the cross-browser FAQ opening compatibility issue
 
