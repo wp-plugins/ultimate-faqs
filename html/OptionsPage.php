@@ -11,6 +11,7 @@
 		$Order_By_Setting = get_option("EWD_UFAQ_Order_By");
 		$Order_Setting = get_option("EWD_UFAQ_Order");
 		$Include_Permalink = get_option("EWD_UFAQ_Include_Permalink");
+		$Pretty_Permalinks = get_option("EWD_UFAQ_Pretty_Permalinks");
 		$Display_All_Answers = get_option("EWD_UFAQ_Display_All_Answers");
         $Socialmedia_String = get_option("EWD_UFAQ_Social_Media");
         $Socialmedia = explode(",", $Socialmedia_String);
@@ -164,6 +165,16 @@
 	<label title='Yes'><input type='radio' name='include_permalink' value='Yes' <?php if($Include_Permalink == "Yes") {echo "checked='checked'";} ?> /> <span>Yes</span></label><br />
 	<label title='No'><input type='radio' name='include_permalink' value='No' <?php if($Include_Permalink == "No") {echo "checked='checked'";} ?> /> <span>No</span></label><br />	
 	<p>Should an icon to link directly to each question be displayed?</p>
+	</fieldset>
+</td>
+</tr>
+<tr>
+<th scope="row">Pretty Permalinks</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>Pretty Permalinks</span></legend>
+	<label title='Yes'><input type='radio' name='pretty_permalinks' value='Yes' <?php if($Pretty_Permalinks == "Yes") {echo "checked='checked'";} ?> /> <span>Yes</span></label><br />
+	<label title='No'><input type='radio' name='pretty_permalinks' value='No' <?php if($Pretty_Permalinks == "No") {echo "checked='checked'";} ?> /> <span>No</span></label><br />	
+	<p>Should an SEO friendly permalink structure be used for the link to this FAQ?</p>
 	</fieldset>
 </td>
 </tr>

@@ -16,6 +16,7 @@ function Display_FAQs($atts) {
 	$Order_By_Setting = get_option("EWD_UFAQ_Order_By");
 	$Order_Setting = get_option("EWD_UFAQ_Order");
 	$Include_Permalink = get_option("EWD_UFAQ_Include_Permalink");
+	$Pretty_Permalinks = get_option("EWD_UFAQ_Pretty_Permalinks");
 	$Display_All_Answers = get_option("EWD_UFAQ_Display_All_Answers");
     $Socialmedia_String = get_option("EWD_UFAQ_Social_Media");
     $Socialmedia = explode(",", $Socialmedia_String);
@@ -80,6 +81,10 @@ function Display_FAQs($atts) {
 
 	$ReturnString .= "<div class='ufaq-faq-list' id='ufaq-faq-list'>";
 
+	if (get_query_var('single_faq') != "") {
+		$FAQ = get_page_by_path(get_query_var('single_faq'),OBJECT,'ufaq');
+		$ReturnString .= "<script>var Display_FAQ_ID = " . $FAQ->ID . ";</script>";
+	}
 	if (isset($_GET['Display_FAQ'])) {$ReturnString .= "<script>var Display_FAQ_ID = " . $_GET['Display_FAQ'] . ";</script>";}
 
 	foreach ($Category_Array as $Category) {
@@ -124,7 +129,8 @@ function Display_FAQs($atts) {
 				$Category_Terms = wp_get_post_terms($faq->ID, 'ufaq-category');
 				$Tag_Terms = wp_get_post_terms($faq->ID, 'ufaq-tag');
 
-				$FAQ_Permalink = get_the_permalink() . "?Display_FAQ=" . $faq->ID;
+				if ($Pretty_Permalinks == "Yes") {$FAQ_Permalink = get_the_permalink() . "single-faq/" . $faq->post_name;}
+				else {$FAQ_Permalink = get_the_permalink() . "?Display_FAQ=" . $faq->ID;}
 		
 				$ReturnString .= "<div class='ufaq-faq-div'>";
 		

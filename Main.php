@@ -7,7 +7,7 @@ Author: Tim Ruse
 Author URI: http://www.EtoileWebDesign.com/wordpress-plugins/
 Terms and Conditions: http://www.etoilewebdesign.com/plugin-terms-and-conditions/
 Text Domain: EWD_UFAQ
-Version: 0.20
+Version: 0.21
 */
 
 global $ewd_ufaq_message;
@@ -110,6 +110,15 @@ function Set_EWD_UFAQ_Options() {
 
 $UFAQ_Full_Version = get_option("EWD_UFAQ_Full_Version");
 
+$rules = get_option('rewrite_rules');
+$PrettyLinks = get_option("EWD_UFAQ_Pretty_Permalinks");
+if ($PrettyLinks == "Yes") {
+//if (!isset($rules['"(.?.+?)/([^&]+)/?$"']) and $PrettyLinks == "Yes") {
+	add_filter( 'query_vars', 'EWD_UFAQ_add_query_vars_filter' );
+	add_filter('init', 'EWD_UFAQ_Rewrite_Rules');
+	update_option("EWD_UFAQ_Update_RR_Rules", "No");
+}
+
 /*if (isset($_POST['Upgrade_To_Full'])) {
 	  add_action('admin_init', 'Upgrade_To_Full');
 }*/
@@ -122,6 +131,7 @@ include "Functions/EWD_UFAQ_Import.php";
 include "Functions/EWD_UFAQ_Output_Options_Page.php";
 include "Functions/EWD_UFAQ_Output_Export_Page.php";
 include "Functions/EWD_UFAQ_Output_Import_Page.php";
+include "Functions/EWD_UFAQ_Rewrite_Rules.php";
 include "Functions/EWD_UFAQ_Widgets.php";
 include "Functions/FrontEndAjaxUrl.php";
 include "Functions/Process_Ajax.php";

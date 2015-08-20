@@ -44,7 +44,7 @@ function EWD_UFAQ_Reveal_FAQ(post_id, selectedIDString) {
 
 	jQuery('#ufaq-excerpt-'+post_id).addClass("ewd-ufaq-hidden");
 	if (reveal_effect != "none") {runEffect("show", post_id);}
-	else {jQuery('#ufaq-body-'+post_id).removeClass("ewd-ufaq-hidden");}
+	else {jQuery('#'+selectedIDString).removeClass("ewd-ufaq-hidden");}
 			
 	if (faq_accordion) {
 		jQuery('.ufaq-faq-body').each(function() {					
@@ -83,7 +83,9 @@ jQuery(document).ready(function() {
 	});
 
 	if (typeof(Display_FAQ_ID) != "undefined" && Display_FAQ_ID !== null) {
-		EWD_UFAQ_Reveal_FAQ(Display_FAQ_ID);
+		var selectedIDString = 'ufaq-body-'+Display_FAQ_ID;
+		EWD_UFAQ_Reveal_FAQ(Display_FAQ_ID, selectedIDString);
+		jQuery('html, body').animate({scrollTop: jQuery("#"+selectedIDString).offset().top -80}, 100);
 	}
 });
 

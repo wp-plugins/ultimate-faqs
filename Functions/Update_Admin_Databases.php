@@ -14,23 +14,12 @@ function EWD_UFAQ_UpdateOptions() {
 	$Order_By_Setting = $_POST['order_by_setting'];
 	$Order_Setting = $_POST['order_setting'];
 	$Include_Permalink = $_POST['include_permalink'];
+	$Pretty_Permalinks = $_POST['pretty_permalinks'];
 	$Display_All_Answers = $_POST['display_all_answers'];
-    $Socialmedia_Array = $_POST['Socialmedia'];
-    if (is_array($Socialmedia_Array)) {$socialmedia= implode(",", $Socialmedia_Array);}
+    $Social_Media_Array = $_POST['Socialmedia'];
+    if (is_array($Social_Media_Array)) {$Social_Media = implode(",", $Social_Media_Array);}
 	
 	$Custom_CSS = stripslashes_deep($Custom_CSS);
-	$FAQ_Accordion = stripslashes_deep($FAQ_Accordion);
-	$Hide_Categories = stripslashes_deep($Hide_Categories);
-	$Hide_Tags = stripslashes_deep($Hide_Tags);
-	$Reveal_Effect = stripslashes_deep($Reveal_Effect);
-	$Group_By_Category = stripslashes_deep($Group_By_Category);
-	$Group_By_Order_By = stripslashes_deep($Group_By_Order_By);
-	$Group_By_Order = stripslashes_deep($Group_By_Order);
-	$Order_By_Setting = stripslashes_deep($Order_By_Setting);
-	$Order_Setting = stripslashes_deep($Order_Setting);
-	$Include_Permalink = stripslashes_deep($Include_Permalink);
-	$Display_All_Answers = stripslashes_deep($Display_All_Answers);
-    $socialmedia = stripslashes_deep($socialmedia);
 	
 	update_option('EWD_UFAQ_Custom_CSS', $Custom_CSS);
 	update_option('EWD_UFAQ_FAQ_Accordion', $FAQ_Accordion);
@@ -43,8 +32,13 @@ function EWD_UFAQ_UpdateOptions() {
 	update_option('EWD_UFAQ_Order_By', $Order_By_Setting);
 	update_option('EWD_UFAQ_Order', $Order_Setting);
 	update_option('EWD_UFAQ_Include_Permalink', $Include_Permalink);
+	update_option('EWD_UFAQ_Pretty_Permalinks', $Pretty_Permalinks);
 	update_option('EWD_UFAQ_Display_All_Answers', $Display_All_Answers);
-    update_option('EWD_UFAQ_Social_Media',  $socialmedia);
+    update_option('EWD_UFAQ_Social_Media',  $Social_Media);
+
+    if ($_POST['Pretty_Permalinks'] == "Yes") {
+		 update_option("EWD_UFAQ_Rewrite_Rules", "Yes");
+	}
 }
 
 ?>

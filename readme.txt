@@ -87,6 +87,11 @@ For more questions and support you can post in the support forum:
 2. Sample FAQ page
 
 == Changelog ==
+= 0.21 =
+- Added a new pretty permalinks option
+- Fixed the no reveal effect single post display
+- Fixed the scroll for single post display
+
 = 0.20 =
 - Fixed the accordion effect which was broken in the V0.19 browser compatibilty fix
 
