@@ -6,8 +6,9 @@ function Display_Select_FAQs($atts) {
 	$FAQ_Accordion = get_option("EWD_UFAQ_FAQ_Accordion");
 	$Reveal_Effect = get_option("EWD_UFAQ_Reveal_Effect");
 	$Display_All_Answers = get_option("EWD_UFAQ_Display_All_Answers");
-
 	$Include_Permalink = get_option("EWD_UFAQ_Include_Permalink");
+	$Socialmedia_String = get_option("EWD_UFAQ_Social_Media");
+    $Socialmedia = explode(",", $Socialmedia_String);
 
 	$ReturnString = "";
 

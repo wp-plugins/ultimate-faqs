@@ -87,6 +87,9 @@ For more questions and support you can post in the support forum:
 2. Sample FAQ page
 
 == Changelog ==
+= 0.23 =
+- Fixed an error with single FAQ display
+
 = 0.22 =
 - File was missing from upload
 
