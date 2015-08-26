@@ -10,6 +10,8 @@ A plugin that lets you create FAQs (frequently asked questions), organize them, 
 
 == Description == 
 
+<a href='http://www.etoilewebdesign.com/ultimate-faq-demo/'>FAQ Demo</a>
+
 Create, organize and publicize your Frequently Asked Questions in no time through your Wordpress Admin Panel with this easy to use plugin.
 
 = Key Features =
