@@ -6,9 +6,12 @@ function Display_Select_FAQs($atts) {
 	$FAQ_Accordion = get_option("EWD_UFAQ_FAQ_Accordion");
 	$Reveal_Effect = get_option("EWD_UFAQ_Reveal_Effect");
 	$Display_All_Answers = get_option("EWD_UFAQ_Display_All_Answers");
+	$Scroll_To_Top = get_option("EWD_UFAQ_Scroll_To_Top");
 	$Include_Permalink = get_option("EWD_UFAQ_Include_Permalink");
 	$Socialmedia_String = get_option("EWD_UFAQ_Social_Media");
     $Socialmedia = explode(",", $Socialmedia_String);
+    $Display_Author = get_option("EWD_UFAQ_Display_Author");
+    $Display_Date = get_option("EWD_UFAQ_Display_Date");
 
 	$ReturnString = "";
 
@@ -47,49 +50,46 @@ function Display_Select_FAQs($atts) {
 	$faqs = get_posts($params);
 
 	if ($Custom_CSS != "") {$ReturnString .= "<style>" . $Custom_CSS . "</style>";}
-
+	$ReturnString .= EWD_UFAQ_Add_Modified_Styles();
+		
 	$ReturnString .= "<script language='JavaScript' type='text/javascript'>";
 	if ($FAQ_Accordion == "Yes") {$ReturnString .= "var faq_accordion = true;";}
 	else {$ReturnString .= "var faq_accordion = false;";}
+	if ($Scroll_To_Top == "Yes") {$ReturnString .= "var faq_scroll = true;";}
+		else {$ReturnString .= "var faq_scroll = false;";}
 	$ReturnString .= "var reveal_effect = '" . $Reveal_Effect . "';";
 	$ReturnString .= "</script>";
 
 	$ReturnString .= "<div class='ufaq-faq-list' id='ufaq-faq-list'>";
 	foreach ($faqs as $faq) {
-		$Category_Terms = wp_get_post_terms($faq->ID, 'ufaq-category');
-		$Tag_Terms = wp_get_post_terms($faq->ID, 'ufaq-tag');
+		if ($Pretty_Permalinks == "Yes") {$FAQ_Permalink = get_the_permalink() . "single-faq/" . $faq->post_name;}
+		else {$FAQ_Permalink = get_the_permalink() . "?Display_FAQ=" . $faq->ID;}
 
 		$ReturnString .= "<div class='ufaq-faq-div'>";
 
 		$ReturnString .= "<div class='ufaq-faq-title' id='ufaq-title-" . $faq->ID . "' data-postid='" . $faq->ID . "'>";
-		$ReturnString .= "<h4 ><a class='ewd-ufaq-post-margin-symbol'  href='" . get_permalink($faq->ID) . "'>+ </a><a class='ewd-ufaq-post-margin'  href='" . get_permalink($faq->ID) . "'>" .$faq->post_title . " </a></h4>";
+		$ReturnString .= "<h4 ><a class='ewd-ufaq-post-margin-symbol' id='ewd-ufaq-post-margin-symbol-" . $faq->ID . "' href='" . get_permalink($faq->ID) . "' data-id='" . $faq->ID . "'>+ </a>";
+		$ReturnString .= "<a class='ewd-ufaq-post-margin'  href='" . get_permalink($faq->ID) . "'>" .$faq->post_title . " </a></h4>";
 		$ReturnString .= "</div>";
 
 		if (strlen($faq->post_excerpt) > 0) {$ReturnString .= "<div class='ufaq-faq-excerpt' id='ufaq-excerpt-" . $faq->ID . "'>" . $faq->post_excerpt . "</div>";}
 		$ReturnString .= "<div class='ufaq-faq-body ";
 		if ($Display_All_Answers != "Yes") {$ReturnString .= "ewd-ufaq-hidden";}
 		$ReturnString .= "' id='ufaq-body-" . $faq->ID . "'>";
+
+		if ($Display_Author == "Yes"  or $Display_Date == "Yes") {
+			$Display_Author_Value = get_post_meta($faq->ID, "EWD_UFAQ_Post_Author", true);
+			$Display_Date_Value = get_the_date("", $faq->ID);
+			$ReturnString .= "<div class='ewd-ufaq-author-date'>";
+			$ReturnString .= __("Posted ", 'EWD_UFAQ');
+			if ($Display_Author == "Yes" and $Display_Author_Value != "") {$ReturnString .= __("by ", 'EWD_UFAQ') . "<span class='ewd-ufaq-author'>" . $Display_Author_Value . "</span> ";}
+			if ($Display_Date == "Yes") {$ReturnString .= __("on ", 'EWD_UFAQ') . "<span class='ewd-ufaq-date'>" . $Display_Date_Value . "</span> ";}
+			$ReturnString .= "</div>";
+		}
+
 		$ReturnString .= "<div class='ufaq-faq-post' id='ufaq-post-" . $faq->ID . "'>" . $faq->post_content . "</div>";
 
-		if ($Hide_Categories == "No") {
-			$ReturnString .= "<div class='ufaq-faq-categories' id='ufaq-categories-" . $faq->ID . "'>";
-			if (sizeOf($Category_Terms) > 1) {$ReturnString .= "Categories: ";}
-			else {$ReturnString .= "Category: ";}
-			foreach ($Category_Terms as $Category_Term) {$ReturnString .= "<a  href='" . $current_url . "?include_category=" . $Category_Term->slug . "'>" .$Category_Term->name . "</a>, ";}
-			if (sizeOf($Category_Terms) > 0) {$ReturnString = substr($ReturnString, 0, strlen($ReturnString)-2);}
-			$ReturnString .= "</div>";
-		}
-
-		if ($Hide_Tags == "No") {
-			$ReturnString .= "<div class='ufaq-faq-tags' id='ufaq-tags-" . $faq->ID . "'>";
-			if (sizeOf($Tag_Terms) > 1) {$ReturnString .= "Tags: ";}
-			else {$ReturnString .= "Tag: ";}
-			foreach ($Tag_Terms as $Tag_Term) {$ReturnString .= "<a  href='" . $current_url . "?include_tag=" . $Tag_Term->slug . "'>" .$Tag_Term->name . "</a>, ";}
-			if (sizeOf($Tag_Terms) > 0) {$ReturnString = substr($ReturnString, 0, strlen($ReturnString)-2);}
-			$ReturnString .= "</div>";
-		}
-
-		if ($Socialmedia[0] != "") {
+		if ($Socialmedia[0] != "Blank" and $Socialmedia[0] != "") {
 			$ReturnString .= "<div class='ufaq-social-links'>Share: ";
 			$ReturnString .= "<ul class='rrssb-buttons'>";
 		}
@@ -99,7 +99,7 @@ function Display_Select_FAQs($atts) {
 		if(in_array("Linkedin", $Socialmedia)) {$ReturnString .= EWD_UFAQ_Add_Social_Media_Buttons("Linkedin", $FAQ_Permalink, $faq->post_title);}
 		if(in_array("Pinterest", $Socialmedia)) {$ReturnString .= EWD_UFAQ_Add_Social_Media_Buttons("Pinterest", $FAQ_Permalink, $faq->post_title);}
 		if(in_array("Email", $Socialmedia)) {$ReturnString .= EWD_UFAQ_Add_Social_Media_Buttons("Email", $FAQ_Permalink, $faq->post_title);}
-		if ($Socialmedia[0] != "") {
+		if ($Socialmedia[0] != "Blank" and $Socialmedia[0] != "") {
 			$ReturnString .= "</ul>";
 			$ReturnString .= "</div>";
 		}

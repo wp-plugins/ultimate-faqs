@@ -75,4 +75,88 @@ function EWD_UFAQ_Create_Category_Taxonomy() {
 	));
 }
 add_action( 'init', 'EWD_UFAQ_Create_Category_Taxonomy', 0 );
+
+add_action( 'add_meta_boxes', 'EWD_UFAQ_Add_Meta_Boxes' );
+function EWD_UFAQ_Add_Meta_Boxes () {
+	add_meta_box("ufaq-meta", __("FAQ Details", 'EWD_UFAQ'), "EWD_UFAQ_Meta_Box", "ufaq", "normal", "high");
+}
+
+/**
+ * Prints the box content.
+ * 
+ * @param WP_Post $post The object for the current post/page.
+ */
+function EWD_UFAQ_Meta_Box( $post ) {
+
+	// Add a nonce field so we can check for it later.
+	wp_nonce_field( 'EWD_UFAQ_Save_Meta_Box_Data', 'EWD_UFAQ_meta_box_nonce' );
+
+	/*
+	 * Use get_post_meta() to retrieve an existing value
+	 * from the database and use the value for the form.
+	 */
+	$Value = get_post_meta( $post->ID, 'EWD_UFAQ_Post_Author', true );
+
+	if ($Value == "") {
+		$User = wp_get_current_user();
+		$Value = $User->display_name;
+	}
+
+	echo "<div class='ewd-ufaq-meta-field'>";
+	echo "<label for='Post_Author'>";
+	echo __( "Author Display Name:", 'EWD_UFAQ' );
+	echo " </label>";
+	echo "<input type='text' id='ewd-ufaq-post-author' name='Post_Author' value='" . esc_attr( $Value ) . "' size='25' />";
+	echo "</div>";
+}
+
+add_action( 'save_post', 'EWD_UFAQ_Save_Meta_Box_Data' );
+function EWD_UFAQ_Save_Meta_Box_Data($post_id) {
+
+	/*
+	 * We need to verify this came from our screen and with proper authorization,
+	 * because the save_post action can be triggered at other times.
+	 */
+
+	// Check if our nonce is set.
+	if ( ! isset( $_POST['EWD_UFAQ_meta_box_nonce'] ) ) {
+		return;
+	}
+
+	// Verify that the nonce is valid.
+	if ( ! wp_verify_nonce( $_POST['EWD_UFAQ_meta_box_nonce'], 'EWD_UFAQ_Save_Meta_Box_Data' ) ) {
+		return;
+	}
+
+	// If this is an autosave, our form has not been submitted, so we don't want to do anything.
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+		return;
+	}
+
+	// Check the user's permissions.
+	if ( isset( $_POST['post_type'] ) && 'page' == $_POST['post_type'] ) {
+
+		if ( ! current_user_can( 'edit_page', $post_id ) ) {
+			return;
+		}
+
+	} else {
+
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
+			return;
+		}
+	}
+
+	/* OK, it's safe for us to save the data now. If there's no product name, don't save any other information.*/
+	if ( ! isset( $_POST['Post_Author'] ) ) {
+		return;
+	}
+
+	// Sanitize user input.
+	$Post_Author = sanitize_text_field( $_POST['Post_Author'] );
+
+	// Update the meta field in the database.
+	update_post_meta( $post_id, 'EWD_UFAQ_Post_Author', $Post_Author );
+
+}
 ?>

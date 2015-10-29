@@ -4,11 +4,22 @@
 <div class="wrap">
 <div id="icon-options-general" class="icon32"><br /></div><h2>Export</h2>
 
+<?php if ($UFAQ_Full_Version != "Yes") { ?>
+	<div class='ewd-ufaq-upgrade notice'>Upgrade to the premium version to use these features</div>
+<?php } ?>
+
 <form method="post" action="edit.php?post_type=ufaq&page=export&Action=EWD_UFAQ_ExportToPDF">
 <table class="form-table">
 </table>
 
 
-<p class="submit"><input type="submit" name="Export_Submit" id="submit" class="button button-primary" value="Export to PDF"  /></p></form>
+<p class="submit"><input type="submit" name="Export_Submit" id="submit" class="button button-primary" value="Export to PDF" <?php if ($UFAQ_Full_Version != "Yes") {echo "disabled";} ?> /></p></form>
+
+<form method="post" action="edit.php?post_type=ufaq&page=export&Action=EWD_UFAQ_ExportToSpreadsheet">
+<table class="form-table">
+</table>
+
+
+<p class="submit"><input type="submit" name="Export_Submit" id="submit" class="button button-primary" value="Export to Spreadsheet" <?php if ($UFAQ_Full_Version != "Yes") {echo "disabled";} ?> /></p></form>
 
 </div>

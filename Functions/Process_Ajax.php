@@ -7,7 +7,11 @@ function UFAQ_Search() {
     $Path = ABSPATH . 'wp-load.php';
     include_once($Path);
 
-    echo do_shortcode("[ultimate-faqs search_string='" . strtolower($_POST['Q']) . "' include_category='" . $_POST['include_category'] . "' exclude_category='" . $_POST['exclude_category'] . "' orderby='" . $_POST['orderby'] . "' order='" . $_POST['order'] . "' post_count='" . $_POST['post_count'] . "' ajax='Yes']") ;
+    $response = do_shortcode("[ultimate-faqs search_string='" . strtolower($_POST['Q']) . "' include_category='" . $_POST['include_category'] . "' exclude_category='" . $_POST['exclude_category'] . "' orderby='" . $_POST['orderby'] . "' order='" . $_POST['order'] . "' post_count='" . $_POST['post_count'] . "' ajax='Yes']");
+
+    $ReturnArray['request_count'] = $_POST['request_count'];
+    $ReturnArray['message'] = $response;
+    echo json_encode($ReturnArray);
 }
 add_action('wp_ajax_ufaq_search', 'UFAQ_Search');
 add_action( 'wp_ajax_nopriv_ufaq_search', 'UFAQ_Search');
@@ -27,3 +31,11 @@ function UFAQ_Record_View() {
 }
 add_action('wp_ajax_ufaq_record_view', 'UFAQ_Record_View');
 add_action( 'wp_ajax_nopriv_ufaq_record_view', 'UFAQ_Record_View');
+
+function EWD_UFAQ_Save_Order(){   
+    foreach ($_POST['ewd-ufaq-item'] as $Key=>$ID) {
+        update_post_meta($ID, 'ufaq_order', $Key);
+    }
+    
+}
+add_action('wp_ajax_UFAQ_update_order','EWD_UFAQ_Save_Order');

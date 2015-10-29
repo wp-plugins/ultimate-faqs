@@ -16,6 +16,9 @@
     text-decoration: none;
 }
 
+.ufaq-permalink {
+  margin-left: 10px;
+}
 .ufaq-permalink-image {
 	background: url("../images/insert_link.png");
 	height: 21px;
@@ -23,6 +26,21 @@
 	margin-top: -25px;
 	margin-left: 70px;
 }
+
+.ewd-ufaq-author-date {
+  margin: 10px;
+}
+
+.ewd-ufaq-author {
+  font-weight: 600;
+}
+.ewd-ufaq-date {
+  font-weight: 600;
+}
+.ufaq-faq-categories, .ufaq-faq-tags{
+  margin-left:10px;
+}
+
 
 /*.ufaq-faq-title {
   cursor:pointer;

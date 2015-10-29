@@ -35,5 +35,5 @@ function UFAQ_AJAX_Search($atts) {
 	
 	return $ReturnString;
 }
-add_shortcode("ultimate-faq-search", "UFAQ_AJAX_Search");
+if ($UFAQ_Full_Version == "Yes") {add_shortcode("ultimate-faq-search", "UFAQ_AJAX_Search");}
 ?>

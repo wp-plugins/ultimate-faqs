@@ -25,11 +25,23 @@ Create, organize and publicize your Frequently Asked Questions in no time throug
 * Toggle accordion (close open FAQ when a new one is opened) behaviour on/off
 * Share on social media 
 
+= Premium features include =
+* User-submitted FAQs
+* AJAX FAQ search
+* Import/Export of FAQs from spreadsheet
+* Export FAQs to PDF
+* SEO-Friendly FAQ, category and tag permalinks
+* Advanced styling options
+* Re-ordering of FAQs
+
 = Shortcodes =
 
 * [ultimate-faqs]: display all FAQs, or only specific categories using include_category and exclude_category attributes (both take a comma-separated list of category slugs)
+* [popular-faqs]: displays a number of the most viewed FAQs (5 unless specified).
+* [recent-faqs]: displays a number of the most recently added FAQs (5 unless specified).
 * [select-faq]: display specific FAQ posts, using the attributes faq_name, faq_slug and faq_id which take comma-separated lists of post names, slugs and ids respectively.
-* [ultimate-faq-search]: display a search form that allows users to find FAQs with a specific string in the title or body of the post.
+* [ultimate-faq-search]: display a search form that allows users to find FAQs with a specific string in the title or body of the post (premium).
+*[submit-question]: display a form that allows users to submit FAQs of their own and, if enabled, enter an enter to their submitted question as well (premium).
 
 Check out our Frequently Asked Questions here:
 <https://wordpress.org/plugins/ultimate-faqs/faq/>
@@ -89,6 +101,26 @@ For more questions and support you can post in the support forum:
 2. Sample FAQ page
 
 == Changelog ==
+= 1.0.2 =
+- CSS update for the ordering table in the admin area
+
+= 1.0.1 =
+- Fix for the FAQ ordering bug
+
+= 1.0.0 =
+- Premium version release, check out our website for all of the details <http://www.etoilewebdesign.com/ultimate-faq/>
+
+= 0.26 =
+- Javascript fix
+
+= 0.25 =
+- Fixed the accordion effect
+
+= 0.24 =
+- Added an option to not scroll when FAQs are opened
+- Switched the "+" beside each FAQ to a "-" when it's open
+- Fixed the problem where the plugin options would be reset when the browser was closed and then reopened to the options page
+
 = 0.23 =
 - Fixed an error with single FAQ display
 

@@ -14,8 +14,14 @@ if (isset($_GET['Action'])) {
 			case "EWD_UFAQ_ImportFaqs":
        			$ewd_ufaq_message = EWD_UFAQ_Import();
 				break;
+			case "EWD_UFAQ_ImportFaqsFromSpreadsheet":
+       			$ewd_ufaq_message = EWD_UFAQ_Import_From_Spreadsheet();
+				break;
 			case "EWD_UFAQ_ExportToPDF":
        			$ewd_ufaq_message = EWD_UFAQ_Export_To_PDF();
+				break;
+			case "EWD_UFAQ_ExportToSpreadsheet":
+       			$ewd_ufaq_message = EWD_UFAQ_Export_To_Excel();
 				break;
 			default:
 				$ewd_ufaq_message = __("The form has not worked correctly. Please contact the plugin developer.", 'EWD_UFAQP');

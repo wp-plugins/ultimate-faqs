@@ -7,11 +7,14 @@ Author: Tim Ruse
 Author URI: http://www.EtoileWebDesign.com/wordpress-plugins/
 Terms and Conditions: http://www.etoilewebdesign.com/plugin-terms-and-conditions/
 Text Domain: EWD_UFAQ
-Version: 0.23
+Version: 1.0.2
 */
 
 global $ewd_ufaq_message;
 global $UFAQ_Full_Version;
+global $EWD_UFAQ_Version;
+
+$EWD_UFAQ_Version = '1.0.2';
 
 define( 'EWD_UFAQ_CD_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'EWD_UFAQ_CD_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
@@ -23,14 +26,16 @@ add_filter('upgrader_post_install', 'Set_EWD_UFAQ_Options', 10, 2);
 
 /* Hooks neccessary admin tasks */
 if ( is_admin() ){
-		add_action('widgets_init', 'Update_EWD_UFAQ_Content');
-		add_action('admin_notices', 'EWD_UFAQ_Error_Notices');
+	add_action('widgets_init', 'Update_EWD_UFAQ_Content');
+	add_action('admin_notices', 'EWD_UFAQ_Error_Notices');
+	add_action('admin_init', 'Add_EWD_UFAQ_Scripts');
+	add_action('admin_head', 'EWD_UFAQ_Admin_Options');
 }
 
 function EWD_UFAQ_Enable_Sub_Menu() {
 	//add_submenu_page('edit.php?post_type=ufaq', 'FAQ Order', 'FAQ Order', 'edit_posts', basename(__FILE__), 'custom_function');
 	add_submenu_page('edit.php?post_type=ufaq', 'FAQ Options', 'FAQ Settings', 'edit_posts', 'options', 'EWD_UFAQ_Output_Options_Page');
-	add_submenu_page('edit.php?post_type=ufaq', 'FAQ PDF Download', 'FAQ Generate PDF', 'edit_posts', 'export', 'EWD_UFAQ_Output_Export_Page');
+	add_submenu_page('edit.php?post_type=ufaq', 'FAQ Export', 'FAQ Export', 'edit_posts', 'export', 'EWD_UFAQ_Output_Export_Page');
 	add_submenu_page('edit.php?post_type=ufaq', 'FAQ Import', 'FAQ Import', 'edit_posts', 'import_posts', 'EWD_UFAQ_Output_Import_Page');
 	//add_submenu_page('edit.php?post_type=ufaq', 'FAQ Statistics', 'FAQ Statistics', 'edit_posts', basename(__FILE__), 'EWD_UFAQ_Output_Statistics_Page');
 }
@@ -52,10 +57,18 @@ $plugin = plugin_basename(__FILE__);
 add_filter("plugin_action_links_$plugin", 'EWD_UFAQ_plugin_settings_link' );
 
 function Add_EWD_UFAQ_Scripts() {
-		if (isset($_GET['page']) && $_GET['page'] == 'EWD-UFAQ-options') {
-			  $url_one = plugins_url("ultimate-faq/js/Admin.js");
-				wp_enqueue_script('PageSwitch', $url_one, array('jquery'));
-		}
+	if (isset($_GET['post_type']) && $_GET['post_type'] == 'ufaq') {
+		$url_one = plugins_url("ultimate-faqs/js/sorttable.js");
+		$url_two = plugins_url("ultimate-faqs/js/Admin.js");
+
+		wp_enqueue_script('jquery-ui-sortable');
+		wp_enqueue_script('sortable', $url_one, array('jquery'));
+		wp_enqueue_script('UFAQ Admin', $url_two, array('jquery'));
+	}
+}
+
+function EWD_UFAQ_Admin_Options() {
+	wp_enqueue_style( 'ewd-ufaq-admin', plugins_url("ultimate-faqs/css/Admin.css"));
 }
 
 add_action( 'wp_enqueue_scripts', 'Add_EWD_UFAQ_FrontEnd_Scripts' );
@@ -99,7 +112,7 @@ function save_ufaq_error(){
 function Set_EWD_UFAQ_Options() {
 		if (get_option("EWD_UFAQ_FAQ_Accordion") == "") {update_option("EWD_UFAQ_FAQ_Accordion", "No");}
 		if (get_option("EWD_UFAQ_Reveal_Effect") == "") {update_option("EWD_UFAQ_Reveal_Effect", "none");}
-		if (get_option("EWD_UFAQ_Full_Version") == "") {update_option("EWD_UFAQ_Full_Version", "Yes");}
+		if (get_option("EWD_UFAQ_Full_Version") == "") {update_option("EWD_UFAQ_Full_Version", "No");}
 
 		if (get_option("EWD_UFAQ_Group_By_Category") == "") {update_option("EWD_UFAQ_Group_By_Category", "No");}
 		if (get_option("EWD_UFAQ_Group_By_Order_By") == "") {update_option("EWD_UFAQ_Group_By_Order_By", "name");}
@@ -109,40 +122,51 @@ function Set_EWD_UFAQ_Options() {
 }
 
 $UFAQ_Full_Version = get_option("EWD_UFAQ_Full_Version");
+if ($_GET['post_type'] == 'ufaq' and $UFAQ_Full_Version != "Yes") {add_action("admin_notices", "EWD_UFAQ_Upgrade_Box");}
+if ($_GET['post_type'] == 'ufaq' and isset($_POST['Upgrade_To_Full']) and $UFAQ_Full_Version == "Yes") {add_action("admin_notices", "EWD_UFAQ_Upgrade_Notice");}
 
 $rules = get_option('rewrite_rules');
 $PrettyLinks = get_option("EWD_UFAQ_Pretty_Permalinks");
 if ($PrettyLinks == "Yes") {
-//if (!isset($rules['"(.?.+?)/([^&]+)/?$"']) and $PrettyLinks == "Yes") {
 	add_filter( 'query_vars', 'EWD_UFAQ_add_query_vars_filter' );
 	add_filter('init', 'EWD_UFAQ_Rewrite_Rules');
 	update_option("EWD_UFAQ_Update_RR_Rules", "No");
 }
 
-/*if (isset($_POST['Upgrade_To_Full'])) {
-	  add_action('admin_init', 'Upgrade_To_Full');
-}*/
+if (isset($_POST['Upgrade_To_Full'])) {
+	  add_action('admin_init', 'EWD_UFAQ_Upgrade_To_Full');
+}
 
 include "Functions/Error_Notices.php";
 include "Functions/EWD_UFAQ_Add_Social_Media_Buttons.php";
 include "Functions/EWD_UFAQ_Add_Views_Column.php";
-include "Functions/EWD_UFAQ_Export_To_PDF.php";
+include "Functions/EWD_UFAQ_Export.php";
 include "Functions/EWD_UFAQ_Import.php";
+include "Functions/EWD_UFAQ_Styling.php";
 include "Functions/EWD_UFAQ_Output_Options_Page.php";
 include "Functions/EWD_UFAQ_Output_Export_Page.php";
 include "Functions/EWD_UFAQ_Output_Import_Page.php";
 include "Functions/EWD_UFAQ_Rewrite_Rules.php";
+include "Functions/EWD_UFAQ_Submit_Question.php";
+include "Functions/EWD_UFAQ_Upgrade_Box.php";
+include "Functions/EWD_UFAQ_Version_Update.php";
 include "Functions/EWD_UFAQ_Widgets.php";
 include "Functions/FrontEndAjaxUrl.php";
+include "Functions/Full_Upgrade.php";
 include "Functions/Process_Ajax.php";
 include "Functions/Register_EWD_UFAQ_Posts_Taxonomies.php";
 include "Functions/Update_Admin_Databases.php";
 include "Functions/Update_EWD_UFAQ_Content.php";
 
 include "Shortcodes/DisplayFAQs.php";
-include "Shortcodes/Display_Popular_FAQs.php";
-include "Shortcodes/SelectFAQ.php";
-include "Shortcodes/Display_Recent_FAQs.php";
 include "Shortcodes/Display_FAQ_Search.php";
+include "Shortcodes/Display_Popular_FAQs.php";
+include "Shortcodes/Display_Recent_FAQs.php";
+include "Shortcodes/SelectFAQ.php";
+include "Shortcodes/SubmitFAQ.php";
+
+if ($EWD_UFAQ_Version != get_option('EWD_UFAQ_Version')) {
+	EWD_UFAQ_Version_Update();
+}
 
 ?>
