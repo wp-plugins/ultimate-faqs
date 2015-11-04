@@ -101,6 +101,9 @@ For more questions and support you can post in the support forum:
 2. Sample FAQ page
 
 == Changelog ==
+= 1.0.4 =
+- Fixed a status error message
+
 = 1.0.3 =
 - Added in widgets to display a number of popular or recently created faqs
 
