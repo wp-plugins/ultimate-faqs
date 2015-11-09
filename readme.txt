@@ -101,6 +101,9 @@ For more questions and support you can post in the support forum:
 2. Sample FAQ page
 
 == Changelog ==
+= 1.0.5 =
+- Minor CSS update
+
 = 1.0.4 =
 - Fixed a status error message
 
