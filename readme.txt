@@ -1,7 +1,7 @@
 === Plugin Name ===
 Contributors: Rustaurius, EtoileWebDesign
 Tags: frequently asked questions, FAQ, FAQs, easy FAQ, knowledge base, simple FAQ, FAQ categories, FAQs, knowledgebase, answer, answers, faq page, FAQ Plugin, help, help desk, helpdesk, questions, wordpress faq, FAQ list, FAQ accordion, custom post type with accordion, faq list, faq with accordion, jquery ui accordion, jquery-ui, shortcodes, wordpress, WordPress Plugin, Categories, social media, facebook, widget, widgets, statistics, AJAX, analytics, responsive
-Requires at least: 3.5.0
+Requires at least: 3.7.0
 Tested up to: 4.3.1
 License: GPLv3
 License URI:http://www.gnu.org/licenses/gpl-3.0.html
@@ -113,6 +113,9 @@ For more questions and support you can post in the support forum:
 8. All answers displayed in the 'list' FAQ mode
 
 == Changelog ==
+= 1.0.6 =
+- Fixed an issue where new users weren't able to update ordering even after upgrading to premium
+
 = 1.0.5 =
 - Minor CSS update
 

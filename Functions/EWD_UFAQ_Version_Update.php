@@ -10,7 +10,10 @@ function EWD_UFAQ_Version_Update() {
 
 	if (is_array($FAQs)) {
 		foreach ($FAQs as $FAQ) {
-			update_post_meta($FAQ->ID, 'ufaq_order', 999);
+			$Current_Order = get_post_meta($FAQ->ID, "ufaq_order", true);
+			if ($Current_Order == "") {
+				update_post_meta($FAQ->ID, 'ufaq_order', 999);
+			}
 		}
 	}
 

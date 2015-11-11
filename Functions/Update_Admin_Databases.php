@@ -1,6 +1,14 @@
 <?php
 /* The file contains all of the functions which make changes to the WordPress tables */
 
+function EWD_UFAQ_Add_Post_Order_Meta($post_id) {
+    $Current_Order = get_post_meta($post_id, "ufaq_order", true);
+
+    if ($Current_Order == "") {
+        update_post_meta($post_id, "ufaq_order", 1000);
+    }
+}
+add_action('save_post_ufaq', 'EWD_UFAQ_Add_Post_Order_Meta');
 
 function EWD_UFAQ_UpdateOptions() {
 	$Custom_CSS = $_POST['custom_css'];
