@@ -1,18 +1,18 @@
 === Plugin Name ===
 Contributors: Rustaurius, EtoileWebDesign
-Tags: frequently asked questions, FAQ, easy FAQ, knowledge base, simple FAQ, FAQ categories, FAQs, knowledgebase, answer, answers, faq page, FAQ Plugin, help, help desk, helpdesk, questions, wordpress faq, faq list, custom post type with accordion, faq list, faq with accordion, jquery ui accordion, jquery-ui, shortcodes, wordpress, WordPress Plugin, Categories, social media, widget, widgets, statistics, AJAX, analytics, responsive
+Tags: frequently asked questions, FAQ, FAQs, easy FAQ, knowledge base, simple FAQ, FAQ categories, FAQs, knowledgebase, answer, answers, faq page, FAQ Plugin, help, help desk, helpdesk, questions, wordpress faq, faq list, custom post type with accordion, faq list, faq with accordion, jquery ui accordion, jquery-ui, shortcodes, wordpress, WordPress Plugin, Categories, social media, widget, widgets, statistics, AJAX, analytics, responsive
 Requires at least: 3.5.0
-Tested up to: 4.3
+Tested up to: 4.3.1
 License: GPLv3
 License URI:http://www.gnu.org/licenses/gpl-3.0.html
 
-A plugin that lets you create FAQs (frequently asked questions), organize them, publicize them, etc. and insert them using shortcodes
+A plugin that lets you create or your users FAQs, order FAQs, publicize FAQs, etc. and insert a list or AJAX FAQ search using shortcodes
 
 == Description == 
 
 <a href='http://www.etoilewebdesign.com/ultimate-faq-demo/'>FAQ Demo</a>
 
-Create, organize and publicize your Frequently Asked Questions in no time through your Wordpress Admin Panel with this easy to use plugin.
+Create, organize and publicize your Frequently Asked Questions in no time through your Wordpress Admin Panel with the incredibly easy-to-use Ultimate FAQ plugin. Features include statistics on how many times FAQs have been viewed, styling options, display and ordering options among many others. Great for combining with our <a href='https://wordpress.org/plugins/front-end-only-users/'>user management plugin </a> to create a member's only FAQ area.
 
 = Key Features =
 

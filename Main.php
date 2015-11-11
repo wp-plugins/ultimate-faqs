@@ -3,7 +3,7 @@
 Plugin Name: Ultimate FAQ
 Plugin URI: http://www.EtoileWebDesign.com/wordpress-plugins/
 Description: A plugin that lets you create FAQs (frequently asked questions), organize them, publicize them, etc.
-Author: Tim Ruse
+Author: Etoile Web Design
 Author URI: http://www.EtoileWebDesign.com/wordpress-plugins/
 Terms and Conditions: http://www.etoilewebdesign.com/plugin-terms-and-conditions/
 Text Domain: EWD_UFAQ
