@@ -1,18 +1,22 @@
 === Plugin Name ===
 Contributors: Rustaurius, EtoileWebDesign
-Tags: frequently asked questions, FAQ, FAQs, easy FAQ, knowledge base, simple FAQ, FAQ categories, FAQs, knowledgebase, answer, answers, faq page, FAQ Plugin, help, help desk, helpdesk, questions, wordpress faq, faq list, custom post type with accordion, faq list, faq with accordion, jquery ui accordion, jquery-ui, shortcodes, wordpress, WordPress Plugin, Categories, social media, widget, widgets, statistics, AJAX, analytics, responsive
+Tags: frequently asked questions, FAQ, FAQs, easy FAQ, knowledge base, simple FAQ, FAQ categories, FAQs, knowledgebase, answer, answers, faq page, FAQ Plugin, help, help desk, helpdesk, questions, wordpress faq, FAQ list, FAQ accordion, custom post type with accordion, faq list, faq with accordion, jquery ui accordion, jquery-ui, shortcodes, wordpress, WordPress Plugin, Categories, social media, facebook, widget, widgets, statistics, AJAX, analytics, responsive
 Requires at least: 3.5.0
 Tested up to: 4.3.1
 License: GPLv3
 License URI:http://www.gnu.org/licenses/gpl-3.0.html
 
-A plugin that lets you create or your users FAQs, order FAQs, publicize FAQs, etc. and insert a list or AJAX FAQ search using shortcodes
+A simple FAQ plugin that lets you create or your users FAQs, order FAQs, publicize FAQs, etc. and insert a list or AJAX FAQ search using shortcodes
 
 == Description == 
 
 <a href='http://www.etoilewebdesign.com/ultimate-faq-demo/'>FAQ Demo</a>
 
-Create, organize and publicize your Frequently Asked Questions in no time through your Wordpress Admin Panel with the incredibly easy-to-use Ultimate FAQ plugin. Features include statistics on how many times FAQs have been viewed, styling options, display and ordering options among many others. Great for combining with our <a href='https://wordpress.org/plugins/front-end-only-users/'>user management plugin </a> to create a member's only FAQ area.
+Create, organize and publicize your Frequently Asked Questions in no time through your Wordpress Admin Panel with the incredibly easy-to-use, responsive Ultimate FAQ plugin. You can use either the accordion FAQ style, to display one answer on click, or the list FAQ style, to have answers displayed by default. Features include statistics on how many times FAQs have been viewed, styling options, display and ordering options among many others. 
+
+Want to decide exactly what order your FAQs are displayed in? Use our simple drag-and-drop reordering feature! Create SEO-friendly links to individual FAQ posts to simply direct customers to exactly the right answer, right away. You can even let your customers add to your FAQ list with [submit-question] shortcode, which lets visitors submit a question and even propose and answer for it! Easily add links to popular social media, such as Facebook, Twitter and Pinterest so that your customers can help you spread the word!
+
+Great for combining with our <a href='https://wordpress.org/plugins/front-end-only-users/'>user management plugin </a> to create a member's only FAQ area.
 
 = Key Features =
 
@@ -97,8 +101,16 @@ You can customize the plugin by adding code to the Custom CSS box on the setting
 For more questions and support you can post in the support forum:
 <https://wordpress.org/support/plugin/ultimate-faqs>
 
-1. Admin area
-2. Sample FAQ page
+== Screenshots ==
+
+1. Simple Car FAQ demo page
+2. Example responsive, open FAQ
+3. The AJAX FAQ search shortcode in use
+4. Simple user submitted FAQs form
+5. Admin area showing all FAQs with their number of views as well as their categories
+6. Admin simple drag-and-drop FAQ ordering area
+7. Responsive, simple styling options
+8. All answers displayed in the 'list' FAQ mode
 
 == Changelog ==
 = 1.0.5 =
