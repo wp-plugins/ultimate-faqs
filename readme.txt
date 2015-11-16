@@ -113,6 +113,9 @@ For more questions and support you can post in the support forum:
 8. All answers displayed in the 'list' FAQ mode
 
 == Changelog ==
+= 1.0.7 =
+- Minor CSS update
+
 = 1.0.6 =
 - Fixed an issue where new users weren't able to update ordering even after upgrading to premium
 
