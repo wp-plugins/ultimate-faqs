@@ -7,7 +7,7 @@ Author: Etoile Web Design
 Author URI: http://www.EtoileWebDesign.com/wordpress-plugins/
 Terms and Conditions: http://www.etoilewebdesign.com/plugin-terms-and-conditions/
 Text Domain: EWD_UFAQ
-Version: 1.0.7
+Version: 1.0.8
 */
 
 global $ewd_ufaq_message;

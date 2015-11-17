@@ -61,13 +61,14 @@ function Display_Select_FAQs($atts) {
 	$ReturnString .= "</script>";
 
 	$ReturnString .= "<div class='ufaq-faq-list' id='ufaq-faq-list'>";
+	$Counter = 0;
 	foreach ($faqs as $faq) {
 		if ($Pretty_Permalinks == "Yes") {$FAQ_Permalink = get_the_permalink() . "single-faq/" . $faq->post_name;}
 		else {$FAQ_Permalink = get_the_permalink() . "?Display_FAQ=" . $faq->ID;}
 
 		$ReturnString .= "<div class='ufaq-faq-div'>";
 
-		$ReturnString .= "<div class='ufaq-faq-title' id='ufaq-title-" . $faq->ID . "' data-postid='" . $faq->ID . "'>";
+		$ReturnString .= "<div class='ufaq-faq-title' id='ufaq-title-" . $faq->ID . "' data-postid='" . $faq->ID . "-" . $Counter . "'>";
 		$ReturnString .= "<h4 ><a class='ewd-ufaq-post-margin-symbol' id='ewd-ufaq-post-margin-symbol-" . $faq->ID . "' href='" . get_permalink($faq->ID) . "' data-id='" . $faq->ID . "'>+ </a>";
 		$ReturnString .= "<a class='ewd-ufaq-post-margin'  href='" . get_permalink($faq->ID) . "'>" .$faq->post_title . " </a></h4>";
 		$ReturnString .= "</div>";
@@ -75,7 +76,7 @@ function Display_Select_FAQs($atts) {
 		if (strlen($faq->post_excerpt) > 0) {$ReturnString .= "<div class='ufaq-faq-excerpt' id='ufaq-excerpt-" . $faq->ID . "'>" . $faq->post_excerpt . "</div>";}
 		$ReturnString .= "<div class='ufaq-faq-body ";
 		if ($Display_All_Answers != "Yes") {$ReturnString .= "ewd-ufaq-hidden";}
-		$ReturnString .= "' id='ufaq-body-" . $faq->ID . "'>";
+		$ReturnString .= "' id='ufaq-body-" . $faq->ID . "-" . $Counter . "'>";
 
 		if ($Display_Author == "Yes"  or $Display_Date == "Yes") {
 			$Display_Author_Value = get_post_meta($faq->ID, "EWD_UFAQ_Post_Author", true);
@@ -114,6 +115,8 @@ function Display_Select_FAQs($atts) {
 
 		$ReturnString .= "</div>";
 		$ReturnString .= "</div>";
+
+		$Counter++;
 	}
 	$ReturnString .= "</div>";
 

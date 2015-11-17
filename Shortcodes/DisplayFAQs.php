@@ -106,6 +106,18 @@ function Display_FAQs($atts) {
 	}
 	if (isset($_GET['Display_FAQ'])) {$ReturnString .= "<script>var Display_FAQ_ID = " . $_GET['Display_FAQ'] . ";</script>";}
 
+	if ($Custom_CSS != "") {$ReturnString .= "<style>" . $Custom_CSS . "</style>";}
+	$ReturnString .= EWD_UFAQ_Add_Modified_Styles();
+	
+	$ReturnString .= "<script language='JavaScript' type='text/javascript'>";
+	if ($FAQ_Accordion == "Yes") {$ReturnString .= "var faq_accordion = true;";}
+	else {$ReturnString .= "var faq_accordion = false;";}
+	if ($Scroll_To_Top == "Yes") {$ReturnString .= "var faq_scroll = true;";}
+	else {$ReturnString .= "var faq_scroll = false;";}
+	$ReturnString .= "var reveal_effect = '" . $Reveal_Effect . "';";
+	$ReturnString .= "</script>";
+
+	$Counter = 0;
 	foreach ($Category_Array as $Category) {
 
 		if ($Category != "EWD_UFAQ_ALL_CATEGORIES") {$category_array = array( 'taxonomy' => 'ufaq-category',
@@ -129,24 +141,13 @@ function Display_FAQs($atts) {
 		if ($orig_order_setting == "set_order") {$params['meta_key'] = 'ufaq_order';}
 		$faqs = get_posts($params);
 	
-		if ($Custom_CSS != "") {$ReturnString .= "<style>" . $Custom_CSS . "</style>";}
-		$ReturnString .= EWD_UFAQ_Add_Modified_Styles();
-		
-		$ReturnString .= "<script language='JavaScript' type='text/javascript'>";
-		if ($FAQ_Accordion == "Yes") {$ReturnString .= "var faq_accordion = true;";}
-		else {$ReturnString .= "var faq_accordion = false;";}
-		if ($Scroll_To_Top == "Yes") {$ReturnString .= "var faq_scroll = true;";}
-		else {$ReturnString .= "var faq_scroll = false;";}
-		$ReturnString .= "var reveal_effect = '" . $Reveal_Effect . "';";
-		$ReturnString .= "</script>";
-	
 		if ($Category != "EWD_UFAQ_ALL_CATEGORIES" and sizeOf($faqs) > 0) {
 			$ReturnString .= "<div class='ufaq-faq-category'>";
 			$ReturnString .= "<div class='ufaq-faq-category-title'>";
 			$ReturnString .= "<h4>" . $Category->name . "</h4>";
 			$ReturnString .= "</div>";
 	    }
-	
+
 		foreach ($faqs as $faq) {
 			if ($search_string == "" or strpos(strtolower($faq->post_content), $search_string) !== false or strpos(strtolower($faq->post_title), $search_string) !== false) {
 				$Category_Terms = wp_get_post_terms($faq->ID, 'ufaq-category');
@@ -158,7 +159,7 @@ function Display_FAQs($atts) {
 				$ReturnString .= "<div class='ufaq-faq-div'>";
 		
 		
-				$ReturnString .= "<div class='ufaq-faq-title' id='ufaq-title-" . $faq->ID . "' data-postid='" . $faq->ID . "'>";
+				$ReturnString .= "<div class='ufaq-faq-title' id='ufaq-title-" . $faq->ID . "' data-postid='" . $faq->ID . "-" . $Counter  . "''>";
 				$ReturnString .= "<h4 ><a class='ewd-ufaq-post-margin-symbol' id='ewd-ufaq-post-margin-symbol-" . $faq->ID . "' href='" . get_permalink($faq->ID) . "' data-id='" . $faq->ID . "'>+ </a>";
 				$ReturnString .= "<a class='ewd-ufaq-post-margin'  href='" . get_permalink($faq->ID) . "'>" .$faq->post_title . " </a></h4>";
 				$ReturnString .= "</div>";
@@ -166,7 +167,7 @@ function Display_FAQs($atts) {
 				if (strlen($faq->post_excerpt) > 0) {$ReturnString .= "<div class='ufaq-faq-excerpt' id='ufaq-excerpt-" . $faq->ID . "'>" . apply_filters('the_content', html_entity_decode($faq->post_excerpt)) . "</div>";}
 				$ReturnString .= "<div class='ufaq-faq-body ";
 				if ($Display_All_Answers != "Yes") {$ReturnString .= "ewd-ufaq-hidden";}
-				$ReturnString .= "' id='ufaq-body-" . $faq->ID . "'>";
+				$ReturnString .= "' id='ufaq-body-" . $faq->ID . "-" . $Counter . "'>";
 
 				if ($Display_Author == "Yes"  or $Display_Date == "Yes") {
 					$Display_Author_Value = get_post_meta($faq->ID, "EWD_UFAQ_Post_Author", true);
@@ -236,6 +237,8 @@ function Display_FAQs($atts) {
 				$ReturnString .= "</div>";
 				$ReturnString .= "</div>";
 			}
+
+			$Counter++;
 		}
 	
 		if ($Category != "EWD_UFAQ_ALL_CATEGORIES" and sizeOf($faqs) > 0) {
