@@ -113,6 +113,9 @@ For more questions and support you can post in the support forum:
 8. All answers displayed in the 'list' FAQ mode
 
 == Changelog ==
+= 1.0.9 =
+- Added some CSS classes in preparation for an upcoming large CSS/styling update
+
 = 1.0.8 =
 - Added a unique identifier to each FAQ so that if it is repeated on the same page, the correct post should open
 
