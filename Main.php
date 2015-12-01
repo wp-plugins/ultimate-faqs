@@ -7,14 +7,14 @@ Author: Etoile Web Design
 Author URI: http://www.EtoileWebDesign.com/wordpress-plugins/
 Terms and Conditions: http://www.etoilewebdesign.com/plugin-terms-and-conditions/
 Text Domain: EWD_UFAQ
-Version: 1.0.9
+Version: 1.1.1
 */
 
 global $ewd_ufaq_message;
 global $UFAQ_Full_Version;
 global $EWD_UFAQ_Version;
 
-$EWD_UFAQ_Version = '1.0.6';
+$EWD_UFAQ_Version = '1.1.0';
 
 define( 'EWD_UFAQ_CD_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'EWD_UFAQ_CD_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
@@ -77,6 +77,7 @@ function Add_EWD_UFAQ_FrontEnd_Scripts() {
 
 	wp_enqueue_script("jquery-ui-core");
 	wp_enqueue_script("jquery-effects-core");
+	wp_enqueue_script('jquery-ui-autocomplete');
 
 	wp_enqueue_script("jquery-effects-blind");
 	wp_enqueue_script("jquery-effects-bounce");
@@ -119,6 +120,12 @@ function Set_EWD_UFAQ_Options() {
 		if (get_option("EWD_UFAQ_Group_By_Order") == "") {update_option("EWD_UFAQ_Group_By_Order", "ASC");}
 		if (get_option("EWD_UFAQ_Order_By") == "") {update_option("EWD_UFAQ_Order_By", "date");}
 		if (get_option("EWD_UFAQ_Order") == "") {update_option("EWD_UFAQ_Order", "DESC");}
+
+		if (get_option("EWD_UFAQ_Toggle") == "") {update_option("EWD_UFAQ_Toggle", "Yes");}
+		if (get_option("EWD_UFAQ_Display_Back_To_Top") == "") {update_option("EWD_UFAQ_Display_Back_To_Top", "No");}
+		if (get_option("EWD_UFAQ_Display_Style") == "") {update_option("EWD_UFAQ_Display_Style", "Default");}
+		if (get_option("EWD_UFAQ_Color_Block_Shape") == "") {update_option("EWD_UFAQ_Color_Block_Shape", "Square");}
+		if (get_option("FAQ_Auto_Complete_Titles") == "") {update_option("FAQ_Auto_Complete_Titles", "Yes");}
 }
 
 $UFAQ_Full_Version = get_option("EWD_UFAQ_Full_Version");

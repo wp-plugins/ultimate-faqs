@@ -1,6 +1,23 @@
 <?php 
 function EWD_UFAQ_Add_Modified_Styles() {
 	$StylesString = "<style>";
+	$StylesString .=".ufaq-faq-display-style-Default .ewd-ufaq-post-margin-symbol { ";
+		if (get_option("EWD_UFAQ_Styling_Default_Bg_Color") != "") {$StylesString .= "background-color:" .  get_option("EWD_UFAQ_Styling_Default_Bg_Color") . " !important;";} 
+		if (get_option("EWD_UFAQ_Styling_Default_Font_Color") != "") {$StylesString .="color:" . get_option("EWD_UFAQ_Styling_Default_Font_Color") . " !important;";} 
+		if (get_option("EWD_UFAQ_Styling_Default_Border") != "") {$StylesString .= "border:" . get_option("EWD_UFAQ_Styling_Default_Border") . " !important;";} 
+		if (get_option("EWD_UFAQ_Styling_Default_Border_Radius") != "") {$StylesString .= "border-radius:" . get_option("EWD_UFAQ_Styling_Default_Border_Radius") . " !important;";} 
+		$StylesString .="}\n";
+	$StylesString .=".ufaq-faq-display-style-Block.ewd-ufaq-post-active, .ufaq-faq-display-style-Block.ewd-ufaq-post-active a,.ufaq-faq-display-style-Block:hover, .ufaq-faq-display-style-Block:hover a, .ufaq-faq-display-style-Block:hover h4 { ";
+		if (get_option("EWD_UFAQ_Styling_Block_Bg_Color") != "") {$StylesString .= "background-color:" .  get_option("EWD_UFAQ_Styling_Block_Bg_Color") . " !important;";} 
+		if (get_option("EWD_UFAQ_Styling_Block_Font_Color") != "") {$StylesString .="color:" . get_option("EWD_UFAQ_Styling_Block_Font_Color") . " !important;";} 
+		$StylesString .="}\n";
+	$StylesString .=".ufaq-faq-header-title a{ ";
+		if (get_option("EWD_UFAQ_Styling_List_Font") != "") {$StylesString .= "font:" .  get_option("EWD_UFAQ_Styling_List_Font") . " !important;";} 
+		if (get_option("EWD_UFAQ_Styling_List_Font_Size") != "") {$StylesString .="font-size:" . get_option("EWD_UFAQ_Styling_List_Font_Size") . " !important;";} 
+		if (get_option("EWD_UFAQ_Styling_List_Font_Color") != "") {$StylesString .= "color:" . get_option("EWD_UFAQ_Styling_List_Font_Color") . " !important;";} 
+		if (get_option("EWD_UFAQ_Styling_List_Margin") != "") {$StylesString .= "margin:" . get_option("EWD_UFAQ_Styling_List_Margin") . " !important;";} 
+		if (get_option("EWD_UFAQ_Styling_List_Padding") != "") {$StylesString .= "padding:" . get_option("EWD_UFAQ_Styling_List_Padding") . " !important;";} 
+		$StylesString .="}\n";
 	$StylesString .="div.ufaq-faq-title h4 { ";
 		if (get_option("EWD_UFAQ_Styling_Question_Font") != "") {$StylesString .= "font:" .  get_option("EWD_UFAQ_Styling_Question_Font") . " !important;";} 
 		if (get_option("EWD_UFAQ_Styling_Question_Font_Size") != "") {$StylesString .="font-size:" . get_option("EWD_UFAQ_Styling_Question_Font_Size") . " !important;";} 

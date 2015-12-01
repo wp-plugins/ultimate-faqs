@@ -139,8 +139,7 @@ FLEXBOX STYLING
 
 .ufaq-options-page-tabbed input[type=text],
 .ufaq-styling-page-tabbed input[type=text] {
-  width: 90% !important;
-  max-width:130px;
+
 }
 .ufaq-options-page-tabbed select,
 .ufaq-options-page-tabbed textarea

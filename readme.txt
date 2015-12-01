@@ -12,6 +12,8 @@ A simple FAQ plugin that lets you create or your users FAQs, order FAQs, publici
 
 <a href='http://www.etoilewebdesign.com/ultimate-faq-demo/'>FAQ Demo</a>
 
+[youtube https://www.youtube.com/watch?v=GOuiqcF9DTQ]
+
 Create, organize and publicize your Frequently Asked Questions in no time through your Wordpress Admin Panel with the incredibly easy-to-use, responsive Ultimate FAQ plugin. You can use either the accordion FAQ style, to display one answer on click, or the list FAQ style, to have answers displayed by default. Features include statistics on how many times FAQs have been viewed, styling options, display and ordering options among many others. 
 
 Want to decide exactly what order your FAQs are displayed in? Use our simple drag-and-drop reordering feature! Create SEO-friendly links to individual FAQ posts to simply direct customers to exactly the right answer, right away. You can even let your customers add to your FAQ list with [submit-question] shortcode, which lets visitors submit a question and even propose and answer for it! Easily add links to popular social media, such as Facebook, Twitter and Pinterest so that your customers can help you spread the word!
@@ -113,6 +115,17 @@ For more questions and support you can post in the support forum:
 8. All answers displayed in the 'list' FAQ mode
 
 == Changelog ==
+= 1.1.0 =
+- Added 'display_all_answers' as a shortcode attribute, so some pages can have all answers displayed and others can have the started list style
+- Fixed an option mistake
+
+= 1.1.0 =
+- Added new premium display styles
+- Added an autocomplete titles option for the AJAX search shortcode
+- Added more styling options to customize new display styles
+- Added an option to add a 'Back to Top' link to each FAQ post
+- Fixed a reveal error with non-accordion display and no effect selected
+
 = 1.0.9 =
 - Added some CSS classes in preparation for an upcoming large CSS/styling update
 

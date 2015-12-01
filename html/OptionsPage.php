@@ -1,8 +1,13 @@
 <?php 
 	$Custom_CSS = get_option("EWD_UFAQ_Custom_CSS");
+	$FAQ_Toggle = get_option("EWD_UFAQ_Toggle");
 	$FAQ_Accordion = get_option("EWD_UFAQ_FAQ_Accordion");
+	$FAQ_Auto_Complete_Titles = get_option("EWD_UFAQ_Auto_Complete_Titles");
 	$Hide_Categories = get_option("EWD_UFAQ_Hide_Categories");
 	$Hide_Tags = get_option("EWD_UFAQ_Hide_Tags");
+
+	$Display_Style = get_option("EWD_UFAQ_Display_Style");
+	$Color_Block_Shape = get_option("EWD_UFAQ_Color_Block_Shape");
 	$Reveal_Effect = get_option("EWD_UFAQ_Reveal_Effect");
 	
 	$Group_By_Category = get_option("EWD_UFAQ_Group_By_Category");
@@ -19,12 +24,25 @@
     $Allow_Proposed_Answer = get_option("EWD_UFAQ_Allow_Proposed_Answer");
     $Display_Author = get_option("EWD_UFAQ_Display_Author");
     $Display_Date = get_option("EWD_UFAQ_Display_Date");
+    $Display_Back_To_Top = get_option("EWD_UFAQ_Display_Back_To_Top");
 
 	$Posted_Label = get_option("EWD_UFAQ_Posted_Label");
 	$By_Label = get_option("EWD_UFAQ_By_Label");
 	$On_Label = get_option("EWD_UFAQ_On_Label");
 	$Category_Label = get_option("EWD_UFAQ_Category_Label");
 	$Tag_Label = get_option("EWD_UFAQ_Tag_Label");
+
+	$UFAQ_Styling_Default_Bg_Color = get_option("EWD_UFAQ_Styling_Default_Bg_Color");
+	$UFAQ_Styling_Default_Font_Color = get_option("EWD_UFAQ_Styling_Default_Font_Color");
+	$UFAQ_Styling_Default_Border = get_option("EWD_UFAQ_Styling_Default_Border");
+	$UFAQ_Styling_Default_Border_Radius = get_option("EWD_UFAQ_Styling_Default_Border_Radius");
+	$UFAQ_Styling_Block_Bg_Color = get_option("EWD_UFAQ_Styling_Block_Bg_Color");
+	$UFAQ_Styling_Block_Font_Color = get_option("EWD_UFAQ_Styling_Block_Font_Color");
+	$UFAQ_Styling_List_Font = get_option("EWD_UFAQ_Styling_List_Font");
+	$UFAQ_Styling_List_Font_Size = get_option("EWD_UFAQ_Styling_List_Font_Size");
+	$UFAQ_Styling_List_Font_Color = get_option("EWD_UFAQ_Styling_List_Font_Color");
+	$UFAQ_Styling_List_Margin = get_option("EWD_UFAQ_Styling_List_Margin");
+	$UFAQ_Styling_List_Padding = get_option("EWD_UFAQ_Styling_List_Padding");
 
 	$UFAQ_Styling_Question_Font = get_option("EWD_UFAQ_Styling_Question_Font");
 	$UFAQ_Styling_Question_Font_Size = get_option("EWD_UFAQ_Styling_Question_Font_Size");
@@ -76,12 +94,22 @@
 </td>
 </tr>
 <tr>
+<th scope="row">FAQ Toggle</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>FAQ Accordion</span></legend>
+	<label title='Yes'><input type='radio' name='faq_toggle' value='Yes' <?php if($FAQ_Toggle == "Yes") {echo "checked='checked'";} ?> /> <span>Yes</span></label><br />
+	<label title='No'><input type='radio' name='faq_toggle' value='No' <?php if($FAQ_Toggle == "No") {echo "checked='checked'";} ?> /> <span>No</span></label><br />
+	<p>Should the FAQs hide/open when they are clicked? </p>
+	</fieldset>
+</td>
+</tr>
+<tr>
 <th scope="row">FAQ Accordion</th>
 <td>
 	<fieldset><legend class="screen-reader-text"><span>FAQ Accordion</span></legend>
 	<label title='Yes'><input type='radio' name='faq_accordion' value='Yes' <?php if($FAQ_Accordion == "Yes") {echo "checked='checked'";} ?> /> <span>Yes</span></label><br />
 	<label title='No'><input type='radio' name='faq_accordion' value='No' <?php if($FAQ_Accordion == "No") {echo "checked='checked'";} ?> /> <span>No</span></label><br />
-	<p>Should the FAQs accordion? (Close old open FAQ when a new one is clicked)</p>
+	<p>Should the FAQs accordion? (Only one FAQ is open at a time, requires FAQ Toggle)</p>
 	</fieldset>
 </td>
 </tr>
@@ -123,7 +151,7 @@
 	<fieldset><legend class="screen-reader-text"><span>Display All Answers</span></legend>
 	<label title='Yes'><input type='radio' name='display_all_answers' value='Yes' <?php if($Display_All_Answers == "Yes") {echo "checked='checked'";} ?> /> <span>Yes</span></label><br />
 	<label title='No'><input type='radio' name='display_all_answers' value='No' <?php if($Display_All_Answers == "No") {echo "checked='checked'";} ?> /> <span>No</span></label><br />	
-	<p>Should the answer to each question be displayed when the page loads?</p>
+	<p>Should all answers be displayed when the page loads? (Careful if FAQ Accordian is on)</p>
 	</fieldset>
 </td>
 </tr>
@@ -148,6 +176,16 @@
 </td>
 </tr>
 <tr>
+<th scope="row">Display 'Back to Top'</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>Display 'Back to Top'</span></legend>
+	<label title='Yes'><input type='radio' name='display_back_to_top' value='Yes' <?php if($Display_Back_To_Top == "Yes") {echo "checked='checked'";} ?> /> <span>Yes</span></label><br />
+	<label title='No'><input type='radio' name='display_back_to_top' value='No' <?php if($Display_Back_To_Top == "No") {echo "checked='checked'";} ?> /> <span>No</span></label><br />	
+	<p>Should a link to return to the top of the page be added to each FAQ post?</p>
+	</fieldset>
+</td>
+</tr>
+<tr>
 <th scope="row">Include Permalink Icon</th>
 <td>
 	<fieldset><legend class="screen-reader-text"><span>Include Permalink Icon</span></legend>
@@ -163,6 +201,28 @@
 <div id='Premium' class='ufaq-option-set ufaq-hidden'>
 <h2 id='label-premium-options' class='ufaq-options-page-tab-title'>Premium Options</h2>
 <table class="form-table">
+<tr>
+<th scope="row">FAQ Display Style</th>
+<td>
+<fieldset><legend class="screen-reader-text"><span>FAQ Display Style</span></legend>
+<label title='Default Style'><input type='radio' name='display_style' value='Default' <?php if($Display_Style == "Default") {echo "checked='checked'";} ?> <?php if ($UFAQ_Full_Version != "Yes") {echo "disabled";} ?>/> <span>Default</span></label><br />
+<label title='Color Block Style'><input type='radio' name='display_style' value='Color_Block' <?php if($Display_Style == "Color_Block") {echo "checked='checked'";} ?> <?php if ($UFAQ_Full_Version != "Yes") {echo "disabled";} ?>/> <span>Color Block</span></label><br />	
+<label title='Block Style'><input type='radio' name='display_style' value='Block' <?php if($Display_Style == "Block") {echo "checked='checked'";} ?> <?php if ($UFAQ_Full_Version != "Yes") {echo "disabled";} ?>/> <span>Block</span></label><br />	
+<label title='List Style'><input type='radio' name='display_style' value='List' <?php if($Display_Style == "List") {echo "checked='checked'";} ?> <?php if ($UFAQ_Full_Version != "Yes") {echo "disabled";} ?>/> <span>List</span></label><br />	
+<p>Which theme should be used to display the FAQ's?</p>
+</fieldset>
+</td>
+</tr>
+<tr>
+<th scope="row">Color Block Shape</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>Color Block Shape</span></legend>
+	<label title='Square'><input type='radio' name='color_block_shape' value='Square' <?php if($Color_Block_Shape == "Square") {echo "checked='checked'";} ?> <?php if ($UFAQ_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Square</span></label><br />
+	<label title='Circle'><input type='radio' name='color_block_shape' value='Circle' <?php if($Color_Block_Shape == "Circle") {echo "checked='checked'";} ?> <?php if ($UFAQ_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Circle</span></label><br />	
+	<p>If "Color Block" is selected for "FAQ Display Style", should the block be square or circle?</p>
+	</fieldset>
+</td>
+</tr>
 <tr>
 <th scope="row">Reveal Effect</th>
 <td>
@@ -207,6 +267,16 @@
 	<label title='Yes'><input type='radio' name='allow_proposed_answer' value='Yes' <?php if($Allow_Proposed_Answer == "Yes") {echo "checked='checked'";} ?> <?php if ($UFAQ_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Yes</span></label><br />
 	<label title='No'><input type='radio' name='allow_proposed_answer' value='No' <?php if($Allow_Proposed_Answer == "No") {echo "checked='checked'";} ?> <?php if ($UFAQ_Full_Version != "Yes") {echo "disabled";} ?> /> <span>No</span></label><br />	
 	<p>When using the user-submitted question shortcode, should users be able to propose an answer to the question they're submitting?</p>
+	</fieldset>
+</td>
+</tr>
+<tr>
+<th scope="row">FAQ Auto Complete Titles</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>FAQ Auto Complete Titles</span></legend>
+	<label title='Yes'><input type='radio' name='faq_auto_complete_titles' value='Yes' <?php if($FAQ_Auto_Complete_Titles == "Yes") {echo "checked='checked'";} ?> /> <span>Yes</span></label><br />
+	<label title='No'><input type='radio' name='faq_auto_complete_titles' value='No' <?php if($FAQ_Auto_Complete_Titles == "No") {echo "checked='checked'";} ?> /> <span>No</span></label><br />
+	<p>Should the FAQ Titles auto complete? </p>
 	</fieldset>
 </td>
 </tr>
@@ -404,30 +474,65 @@
 <h2 id='label-order-options' class='ufaq-options-page-tab-title'>Styling Options</h2>
 	
 <div id='ufaq-styling-options' class="ufaq-options-div ufaq-options-flex">
-<!-- 	<div class='ufaq-subsection ufaq-subsection-half'>
-	<div class='ufaq-subsection-header'>FAQ Question</div>
-		<div class='ufaq-subsection-content'>
-			<fieldset>
-			<p>How would you like the FAQ's to be displayed?</p>
-			<label title='Yes'><input type='radio' name='ufaq_display_style' value='Default' <?php if($Pretty_Permalinks == "Yes") {echo "checked='checked'";} ?> /> <span>Yes</span></label>
-			<label title='No'><input type='radio' name='ufaq_display_style' value='Accordian' <?php if($Pretty_Permalinks == "No") {echo "checked='checked'";} ?> /> <span>No</span></label>	
-			<label title='No'><input type='radio' name='ufaq_display_style' value='Block' <?php if($Pretty_Permalinks == "No") {echo "checked='checked'";} ?> /> <span>No</span></label>
-			</fieldset>
-		</div> 
-	</div> 
-	<div class='ufaq-subsection ufaq-subsection-half'>
-		<div class='ufaq-subsection-header'>Accordian Icon</div>
+	<div class='ufaq-subsection'>
+		<div class='ufaq-subsection-header'>Default Theme</div>
 			<div class='ufaq-subsection-content'>
 			<div class='ufaq-option ufaq-styling-option'>
-				<div class='ufaq-option-label'>Background Color</div>
-				<div class='ufaq-option-input'><input type='text' name='ufaq_styling_title_font_color' value='<?php echo $ufaq_Styling_Title_Font_Color; ?>' /></div>
+				<div class='ufaq-option-label'>Icon Background Color</div>
+				<div class='ufaq-option-input'><input type='text' name='ufaq_styling_default_bg_color' value='<?php echo $UFAQ_Styling_Default_Bg_Color; ?>' /></div>
 			</div>
 			<div class='ufaq-option ufaq-styling-option'>
-				<div class='ufaq-option-label'>Font Color</div>
-				<div class='ufaq-option-input'><input type='text' name='ufaq_styling_title_font_color' value='<?php echo $ufaq_Styling_Title_Font_Color; ?>' /></div>
+				<div class='ufaq-option-label'>Icon Font Color</div>
+				<div class='ufaq-option-input'><input type='text' name='ufaq_styling_default_font_color' value='<?php echo $UFAQ_Styling_Default_Font_Color; ?>' /></div>
+			</div>
+			<div class='ufaq-option ufaq-styling-option'>
+				<div class='ufaq-option-label'>Icon Border Color</div>
+				<div class='ufaq-option-input'><input type='text' name='ufaq_styling_default_border' value='<?php echo $UFAQ_Styling_Default_Border_Color; ?>' /></div>
+			</div>
+			<div class='ufaq-option ufaq-styling-option'>
+				<div class='ufaq-option-label'>Icon Border Radius</div>
+				<div class='ufaq-option-input'><input type='text' name='ufaq_styling_default_border_radius' value='<?php echo $UFAQ_Styling_Default_Border_Radius; ?>' /></div>
 			</div>
 		</div>
-	</div>  -->
+	</div> 
+	<div class='ufaq-subsection'>
+		<div class='ufaq-subsection-header'>Block Theme</div>
+			<div class='ufaq-subsection-content'>
+			<div class='ufaq-option ufaq-styling-option'>
+				<div class='ufaq-option-label'>Hover Background Color</div>
+				<div class='ufaq-option-input'><input type='text' name='ufaq_styling_block_bg_color' value='<?php echo $UFAQ_Styling_Block_Bg_Color; ?>' /></div>
+			</div>
+			<div class='ufaq-option ufaq-styling-option'>
+				<div class='ufaq-option-label'>Hover Font Color</div>
+				<div class='ufaq-option-input'><input type='text' name='ufaq_styling_block_font_color' value='<?php echo $UFAQ_Styling_Block_Font_Color; ?>' /></div>
+			</div>
+		</div>
+	</div>
+	<div class='ufaq-subsection'>
+		<div class='ufaq-subsection-header'>List Theme Anchors</div>
+			<div class='ufaq-subsection-content'>
+			<div class='ufaq-option ufaq-styling-option'>
+				<div class='ufaq-option-label'>Font Family</div>
+				<div class='ufaq-option-input'><input type='text' name='ufaq_styling_list_font' value='<?php echo $UFAQ_Styling_List_Font; ?>' <?php if ($UFAQ_Full_Version != "Yes") {echo "disabled";} ?> /></div>
+			</div> 
+			<div class='ufaq-option ufaq-styling-option'>
+				<div class='ufaq-option-label'>Font Size</div>
+				<div class='ufaq-option-input'><input type='text' name='ufaq_styling_list_font_size' value='<?php echo $UFAQ_Styling_List_Font_Size; ?>' <?php if ($UFAQ_Full_Version != "Yes") {echo "disabled";} ?> /></div>
+			</div> 
+			<div class='ufaq-option ufaq-styling-option'>
+				<div class='ufaq-option-label'>Font Color</div>
+				<div class='ufaq-option-input'><input type='text' name='ufaq_styling_list_font_color' value='<?php echo $UFAQ_Styling_List_Font_Color; ?>' <?php if ($UFAQ_Full_Version != "Yes") {echo "disabled";} ?> /></div>
+			</div>
+			<div class='ufaq-option ufaq-styling-option'>
+				<div class='ufaq-option-label'>Margin</div>
+				<div class='ufaq-option-input'><input type='text' name='ufaq_styling_list_margin' value='<?php echo $UFAQ_Styling_List_Margin; ?>' <?php if ($UFAQ_Full_Version != "Yes") {echo "disabled";} ?> /></div>
+			</div>			
+			<div class='ufaq-option ufaq-styling-option'>
+				<div class='ufaq-option-label'>Padding</div>
+				<div class='ufaq-option-input'><input type='text' name='ufaq_styling_list_padding' value='<?php echo $UFAQ_Styling_List_Padding; ?>' <?php if ($UFAQ_Full_Version != "Yes") {echo "disabled";} ?> /></div>
+			</div>
+		</div>
+	</div>
 	<div class='ufaq-subsection'>
 		<div class='ufaq-subsection-header'>FAQ Question</div>
 			<div class='ufaq-subsection-content'>

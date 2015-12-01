@@ -1,5 +1,6 @@
 jQuery(function(){ //DOM Ready
     ufaqSetClickHandlers();
+    UFAQSetAutoCompleteClickHandlers();
 });
 
 function runEffect(display, post_id) {
@@ -17,12 +18,12 @@ function runEffect(display, post_id) {
 
 // callback function to bring a hidden box back
 function handleStyles(display, post_id) {
-	if (display == "show") {setTimeout(function() {jQuery('#ufaq-body-'+post_id).removeClass("ewd-ufaq-hidden");}, 500 );}
+	if (display == "show") {setTimeout(function() {jQuery('#ufaq-body-'+post_id).removeClass("ewd-ufaq-hidden"); }, 500 );}
 	if (display == "hide") {setTimeout(function() {jQuery('#ufaq-body-'+post_id).addClass("ewd-ufaq-hidden");}, 500 );}
 };
 
 function ufaqSetClickHandlers() {
-	jQuery('.ufaq-faq-title').on('click', function(event) {
+	jQuery('.ufaq-faq-toggle').on('click', function(event) {
 		var post_id = jQuery(this).attr("data-postid");
 		
 		event.preventDefault();
@@ -36,40 +37,75 @@ function ufaqSetClickHandlers() {
 			EWD_UFAQ_Hide_FAQ(post_id);
 		}
 	});
+
+	jQuery('.ufaq-back-to-top-link').on('click', function(event) {
+		event.preventDefault();
+
+		jQuery('html, body').animate({scrollTop: jQuery("#ufaq-faq-list").offset().top -80}, 100);
+	});
+
+	jQuery('.ufaq-faq-header-link').on('click', function(event) {
+		event.preventDefault();
+
+		var faqID = jQuery(this).data("postid");
+		if (jQuery('#ufaq-body-'+faqID).hasClass('ewd-ufaq-hidden')) {
+			var selectedIDString = 'ufaq-body-'+faqID;
+			EWD_UFAQ_Reveal_FAQ(faqID, selectedIDString);
+		}
+		jQuery('html, body').animate({scrollTop: jQuery("#ufaq-post-"+faqID).offset().top -20}, 100);
+	});
+}
+
+function UFAQSetAutoCompleteClickHandlers() {
+	jQuery('#ufaq-ajax-text-input').on('keyup', function() {
+		if (typeof autocompleteQuestion === 'undefined' || autocompleteQuestion === null) {autocompleteQuestion = "No";}
+		if (autocompleteQuestion == "Yes") {
+			jQuery('#ufaq-ajax-text-input').autocomplete({
+				source: questionTitles,
+				minLength: 3,
+				appendTo: "#ewd-ufaq-jquery-ajax-search",
+				select: function(event, ui) {
+					jQuery(this).val(ui.item.value);
+        			Ufaq_Ajax_Reload();
+				}
+			});
+			jQuery('#ufaq-ajax-text-input').autocomplete( "enable" );
+		}
+	}); 
 }
 
 function EWD_UFAQ_Reveal_FAQ(post_id, selectedIDString) {
 	var data = 'post_id=' + post_id + '&action=ufaq_record_view';
     jQuery.post(ajaxurl, data, function(response) {});
 
-    jQuery('#ewd-ufaq-post-margin-symbol-'+post_id).html('- ');
+    jQuery('#ewd-ufaq-post-symbol-'+post_id).html('- ');
 
 	jQuery('#ufaq-excerpt-'+post_id).addClass("ewd-ufaq-hidden");
-	if (reveal_effect != "none") {runEffect("show", post_id);}
-	else {jQuery('#'+selectedIDString).removeClass("ewd-ufaq-hidden");}
+
+	if (reveal_effect != "none") {runEffect("show", post_id); }
+	else {jQuery('#ufaq-body-'+post_id).removeClass("ewd-ufaq-hidden"); }
 			
 	if (faq_accordion) {
-		jQuery('.ufaq-faq-body').each(function() {					
-			if (jQuery(this).attr("id") != selectedIDString) {
-		  		jQuery(this).addClass("ewd-ufaq-hidden");
-				jQuery(this).removeAttr("style");
+		jQuery('.ufaq-faq-div').each(function() {
+			if (jQuery(this).data("postid") != post_id) {
+		  		EWD_UFAQ_Hide_FAQ(jQuery(this).data("postid"));
+			} else{
+				jQuery(this).addClass("ewd-ufaq-post-active");
 			}
 		});
-
-		jQuery('.ewd-ufaq-post-margin-symbol').each(function() {
-			if (jQuery(this).data("id") != post_id) {
-				jQuery(this).html('+ ');
-			}
-		});
+	}
+	else {
+		jQuery('#ufaq-post-'+post_id).addClass("ewd-ufaq-post-active");
 	}
 }
 
 function EWD_UFAQ_Hide_FAQ(post_id) {
 	jQuery('#ufaq-excerpt-'+post_id).removeClass("ewd-ufaq-hidden");
+
 	if (reveal_effect != "none") {runEffect("hide", post_id);}
 	else {jQuery('#ufaq-body-'+post_id).addClass("ewd-ufaq-hidden");}
-
-	jQuery('#ewd-ufaq-post-margin-symbol-'+post_id).html('+ ');
+	jQuery('#ufaq-post-'+post_id).removeClass("ewd-ufaq-post-active");
+	jQuery('#ewd-ufaq-post-symbol-'+post_id).html('+ ');
 }
 
 jQuery(document).ready(function() {
@@ -124,3 +160,29 @@ function Ufaq_Ajax_Reload() {
     });
 }
 
+jQuery(document).ready(function() {
+  jQuery('a[href*=#]:not([href=#])').click(function() {
+  	var post_id = jQuery(this).attr("data-postid"); 
+    var selectedIDString = 'ufaq-body-'+post_id;
+    
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var target = jQuery(this.hash);
+      target = target.length ? target : jQuery('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+
+    jQuery('html,body').on("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", function(){
+       jQuery('html,body').stop();
+    });
+		
+		if (jQuery('#'+selectedIDString).hasClass("ewd-ufaq-hidden")) {
+			EWD_UFAQ_Reveal_FAQ(post_id, selectedIDString);
+		}
+
+        jQuery('html,body').animate({
+          scrollTop: target.offset().top
+        }, 1000);
+        return false;
+      }
+    }
+  });
+});
